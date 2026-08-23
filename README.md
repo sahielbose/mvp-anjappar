@@ -9,6 +9,9 @@ Call it, order food, it reads the order back and submits it.
 
 Deepgram (speech to text) → GPT-4.1 (conversation) → ElevenLabs (voice), over a
 Twilio phone number, wired together with [Pipecat](https://github.com/pipecat-ai/pipecat).
+Indian English voice, menu built from Anjappar's live Toast POS listing.
+
+Built as an OpenSwarm application.
 
 ---
 
@@ -180,7 +183,11 @@ every one of those assumptions.
 
 - The Twilio leg hasn't been exercised end to end yet. Browser mode and the
   tool layer are tested; the 8kHz phone path is the untested piece.
-- `keyterms.py` is built but not yet wired into the Deepgram service.
+- `keyterms.py` is built but not yet wired into the Deepgram service, so ASR is
+  not yet menu-biased.
+- `toast_client.py` is a stub: it writes orders to `ordering/orders/*.json`
+  rather than into a real Toast POS. The method signatures match the real client
+  so it can be swapped in without touching the rest.
 - Local browser mode runs at 16kHz and sounds better than the phone path, which
   is 8kHz µ-law. Judge call quality on a real call.
 
