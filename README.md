@@ -1,113 +1,187 @@
-> [!CAUTION]
-> This repo is no longer maintained. Checkout [pipecat-examples](https://github.com/pipecat-ai/pipecat-examples) for recent demos and example code. 
+# Anjappar Phone Ordering Bot
 
-# Phone Bot Twilio
+A voice AI agent that takes takeout orders over the phone for
+[Anjappar Chettinad Cuisine](https://www.anjappardublin.com/) in Dublin, CA.
 
-Learn how to connect your Pipecat bot to a phone number so users can call and have voice conversations. This example shows the complete setup for telephone-based AI interactions using Twilio's telephony services. At the end, you'll be able to talk to your bot on the phone.
+Call it, order food, it reads the order back and submits it.
 
-## Prerequisites
+**Call the demo:** `+1 XXX-XXX-XXXX`
 
-- Python 3.10+
-- [uv](https://docs.astral.sh/uv/getting-started/installation/) package manager installed
-- [ngrok](https://ngrok.com/docs/getting-started/) (for tunneling)
-- [Twilio Account](https://www.twilio.com/login) and [phone number](https://help.twilio.com/articles/223135247-How-to-Search-for-and-Buy-a-Twilio-Phone-Number-from-Console)
-- AI Service API keys for: [Deepgram](https://console.deepgram.com/signup), [OpenAI](https://auth.openai.com/create-account), and [Cartesia](https://play.cartesia.ai/sign-up)
+Deepgram (speech to text) → GPT-4.1 (conversation) → ElevenLabs (voice), over a
+Twilio phone number, wired together with [Pipecat](https://github.com/pipecat-ai/pipecat).
 
-## Setup
+---
 
-This example requires running both a server and ngrok tunnel in **two separate terminal windows**.
+## What makes it more than a chatbot with a phone number
 
-### Clone this repository
+The cart lives on the server, not in the model's context. The LLM gets seven
+tools and cannot invent its way around them:
+
+| Tool | Does |
+|---|---|
+| `search_menu` | Fuzzy match what the caller said against 136 real menu items |
+| `add_item` | Add a line, returns a `line_id` |
+| `set_modifier` | Record a required choice (spice level, protein, filling) |
+| `remove_item` | "Actually, drop the pappad" |
+| `set_quantity` | "Make that three" |
+| `get_cart` | Lines, subtotal, and what still needs asking |
+| `submit_order` | Send it, if and only if the order is complete |
+
+`submit_order` **refuses** if the cart is empty, if any required choice is
+unfilled, or if the agent hasn't read the order back and got a yes. Refusals come
+back as structured errors the agent can say out loud, never exceptions.
+
+Two details that matter on a real phone line:
+
+- **Nothing numeric is spoken raw.** Every price, quantity and awkward name ships
+  with a spoken form. `17.00` → "seventeen dollars". `Gobhi 65` → "gobi sixty
+  five". The TTS model doesn't normalize numbers, so the code does it.
+- **Ambiguity is asked about, not guessed.** "aappam" matches both a $12 plate
+  and a $4 side, so search returns both flagged `ambiguous` and the agent asks.
+
+---
+
+## Run it
+
+You need [uv](https://docs.astral.sh/uv/getting-started/installation/),
+[ngrok](https://ngrok.com/docs/getting-started/), and API keys for OpenAI,
+Deepgram and ElevenLabs. For the phone part you also need a
+[Twilio number](https://help.twilio.com/articles/223135247).
+
+### 1. Install
 
 ```bash
-git clone https://github.com/pipecat-ai/pipecat-quickstart-phone-bot.git
-cd pipecat-quickstart-phone-bot
+git clone https://github.com/sahielbose/mvp-anjappar.git
+cd mvp-anjappar
+uv sync
 ```
 
-### Terminal 1: Start ngrok and Configure Twilio
+### 2. Add your keys
 
-1. Start ngrok:
+```bash
+cp env.example .env
+```
 
-   In a new terminal, start ngrok to tunnel the local server:
+Fill in `.env`:
 
-   ```bash
-   ngrok http 7860
-   ```
+```
+OPENAI_API_KEY=
+DEEPGRAM_API_KEY=
+ELEVENLABS_API_KEY=
+ELEVENLABS_VOICE_ID=
 
-   > Want a fixed ngrok URL? Use the `--subdomain` flag:
-   > `ngrok http --subdomain=your_ngrok_name 7860`
+# Optional: lets the bot hang up on its own
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+```
 
-2. Update the Twilio Webhook:
+`ELEVENLABS_VOICE_ID` is the ~20-character ID from the voice's page in
+ElevenLabs, not the voice's name.
 
-   - Go to your Twilio phone number's configuration page
-   - Under "Voice Configuration", in the "A call comes in" section:
-     - Select "Webhook" from the dropdown
-     - Enter your ngrok URL: `https://your-ngrok-url.ngrok.io`
-     - Ensure "HTTP POST" is selected
-   - Click Save at the bottom of the page
+### 3. Try it in your browser first
 
-### Terminal 2: Server Setup
+No phone number needed. This is the fastest way to hear it:
 
-1. Configure environment variables
+```bash
+uv run bot.py -t webrtc
+```
 
-   Create a `.env` file:
+Open http://localhost:7860 and talk. First launch takes ~15s while it downloads
+the voice activity detection model.
 
-   ```bash
-   cp env.example .env
-   ```
+### 4. Put it on a phone number
 
-   Then, add your API keys:
+**Terminal 1** — open a tunnel to port 7860:
 
-   ```
-   DEEPGRAM_API_KEY=your_deepgram_api_key
-   OPENAI_API_KEY=your_openai_api_key
-   CARTESIA_API_KEY=your_cartesia_api_key
-   ```
+```bash
+ngrok http 7860
+```
 
-   > Optional: Add your `TWILIO_ACCOUNT_SID` and `TWILIO_AUTH_TOKEN` to enable auto-hangup.
+Copy the hostname it prints (like `abc123.ngrok-free.app`).
 
-2. Set up a virtual environment and install dependencies:
+**Terminal 2** — start the bot with that hostname:
 
-   ```bash
-   uv sync
-   ```
+```bash
+uv run bot.py -t twilio -x abc123.ngrok-free.app
+```
 
-3. Run the Application
+Hostname only. No `https://`, no trailing slash.
 
-   ```bash
-   uv run bot.py --transport twilio --proxy your_ngrok.ngrok.io
-   ```
+**Twilio console** — open your number, and under Voice Configuration set
+"A call comes in" to:
 
-   > 💡 First run note: The initial startup may take ~15 seconds as Pipecat downloads required models, like the Silero VAD model.
+- Webhook
+- `https://abc123.ngrok-free.app/` (the root path)
+- **HTTP POST**
 
-### Test Your Phone Bot
+Save, then call your number.
 
-**Call your Twilio phone number** to start talking with your AI bot! 🚀
+> Free ngrok gives you a new hostname every restart, and it appears in two
+> places: the `-x` flag and the Twilio webhook. Update both.
 
-> 💡 **Tip**: Check your server terminal for debug logs showing Pipecat's internal workings.
+---
 
-## Deploy to Pipecat Cloud
+## Poke at it without spending money
 
-You can deploy your bot to Pipecat Cloud. For guidance, follow the steps outlining in the [pipecat-quickstart's Deployment section](https://docs.pipecat.ai/getting-started/quickstart#step-2%3A-deploy-to-production).
+Walk a full four-item order end to end and print every tool call. No API keys, no
+audio, no network:
 
-## Troubleshooting
+```bash
+uv run python -m ordering.scripts.dry_run
+```
 
-- **Call doesn't connect**: Verify your ngrok URL is correctly set in both Twilio webhook and `streams.xml`
-- **No audio or bot doesn't respond**: Check that all API keys are correctly set in your `.env` file
-- **Webhook errors**: Ensure your server is running and ngrok tunnel is active before making calls
-- **ngrok tunnel issues**: Free ngrok URLs change each restart - remember to update both Twilio and `streams.xml`
+Reads top to bottom like a call transcript. Good for spotting awkward phrasing
+before you hear it over a phone line.
 
-## Understanding the Call Flow
+Run the tests (73 of them, all offline):
 
-1. **Incoming Call**: User dials your Twilio number
-2. **Webhook**: Twilio sends call data to your ngrok URL
-3. **WebSocket**: Your server establishes real-time audio connection via Websocket and exchanges Media Streams with Twilio
-4. **Processing**: Audio flows through your Pipecat Pipeline
-5. **Response**: Synthesized speech streams back to caller
+```bash
+uv run pytest -q
+```
 
-## Next Steps
+---
 
-- **Deploy to production**: Replace ngrok with a proper server deployment
-- **Explore other telephony providers**: Try [Telnyx](https://github.com/pipecat-ai/pipecat-examples/tree/main/telnyx-chatbot) or [Plivo](https://github.com/pipecat-ai/pipecat-examples/tree/main/plivo-chatbot) examples
-- **Advanced telephony features**: Check out [pipecat-examples](https://github.com/pipecat-ai/pipecat-examples) for call recording, transfer, and more
-- **Join Discord**: Connect with other developers on [Discord](https://discord.gg/pipecat)
+## Layout
+
+```
+bot.py                     pipeline: transport → STT → LLM → TTS
+prompts/system.txt         how the agent is told to behave
+ordering/
+  menu.json                136 items, 14 sections, Toast Menus V3 shape
+  build_menu.py            regenerates menu.json (GUIDs are stable)
+  tools.py                 the seven tools + their OpenAI schemas
+  cart.py                  server-side cart, the source of truth
+  toast_client.py          stub POS client, swappable for the real one
+  speech.py                numbers → words
+  keyterms.py              Deepgram keyterm hints for Tamil dish names
+  NOTES.md                 every assumption made about the menu
+  scripts/dry_run.py       the transcript walkthrough
+```
+
+### Editing the menu
+
+Edit the table in `ordering/build_menu.py`, then:
+
+```bash
+uv run python ordering/build_menu.py
+```
+
+GUIDs are derived deterministically, so regenerating never invalidates an ID the
+agent already handed out. A test fails if `menu.json` drifts from the generator.
+
+Prices and item names came off Anjappar Dublin's live Toast ordering page.
+Modifier groups (spice levels, protein choices) are **inferred**, since Toast
+doesn't expose them without clicking into each item. `ordering/NOTES.md` lists
+every one of those assumptions.
+
+---
+
+## Known gaps
+
+- The Twilio leg hasn't been exercised end to end yet. Browser mode and the
+  tool layer are tested; the 8kHz phone path is the untested piece.
+- `keyterms.py` is built but not yet wired into the Deepgram service.
+- Local browser mode runs at 16kHz and sounds better than the phone path, which
+  is 8kHz µ-law. Judge call quality on a real call.
+
+Not affiliated with Anjappar. Built as a demo.

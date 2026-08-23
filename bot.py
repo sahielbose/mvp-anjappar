@@ -12,17 +12,25 @@ phone via Twilio.
 Required AI services:
 - Deepgram (Speech-to-Text)
 - OpenAI (LLM)
-- Cartesia (Text-to-Speech)
+- ElevenLabs (Text-to-Speech)
 
 The example connects between client and server using a Twilio websocket
 connection.
 
 Run the bot using::
 
+    # Telephony (Twilio, 8kHz mu-law):
     uv run bot.py -t twilio -x your_ngrok.ngrok.io
+
+    # Local browser-mic testing over WebRTC (16kHz, no Twilio number needed):
+    uv run bot.py -t webrtc
+
+Both modes share the same STT, LLM, TTS and ordering tools. They differ only in
+transport and sample rate; see SAMPLE_RATES below.
 """
 
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from loguru import logger
@@ -33,38 +41,87 @@ from pipecat.pipeline.runner import PipelineRunner
 from pipecat.pipeline.task import PipelineParams, PipelineTask
 from pipecat.processors.aggregators.openai_llm_context import OpenAILLMContext
 from pipecat.processors.frameworks.rtvi import RTVIConfig, RTVIObserver, RTVIProcessor
-from pipecat.runner.types import RunnerArguments
+from pipecat.runner.types import RunnerArguments, SmallWebRTCRunnerArguments
 from pipecat.runner.utils import parse_telephony_websocket
 from pipecat.serializers.twilio import TwilioFrameSerializer
-from pipecat.services.cartesia.tts import CartesiaTTSService
 from pipecat.services.deepgram.stt import DeepgramSTTService
+from pipecat.services.elevenlabs.tts import ElevenLabsTTSService
 from pipecat.services.openai.llm import OpenAILLMService
-from pipecat.transports.base_transport import BaseTransport
+from pipecat.transports.base_transport import BaseTransport, TransportParams
 from pipecat.transports.websocket.fastapi import FastAPIWebsocketParams, FastAPIWebsocketTransport
 
 load_dotenv(override=True)
 
+from ordering import tools as ordering_tools  # noqa: E402  (needs load_dotenv first)
 
-async def run_bot(transport: BaseTransport):
-    logger.info(f"Starting bot")
+PROMPT_PATH = Path(__file__).parent / "prompts" / "system.txt"
+
+# Twilio carries 8kHz mu-law. SmallWebRTC negotiates Opus (48kHz) and pipecat's
+# transport resamples input down to 16kHz, so local mode runs the whole pipeline
+# at 16kHz. Local audio will sound noticeably better than the phone path; judge
+# telephony quality on the Twilio path, not this one.
+TELEPHONY_SAMPLE_RATE = 8000
+LOCAL_SAMPLE_RATE = 16000
+
+# The seven ordering tools. Handlers live in ordering/tools.py; the cart is
+# server-side state there, never in the model's context.
+ORDERING_FUNCTIONS = {
+    "search_menu": ordering_tools.search_menu,
+    "add_item": ordering_tools.add_item,
+    "set_modifier": ordering_tools.set_modifier,
+    "remove_item": ordering_tools.remove_item,
+    "set_quantity": ordering_tools.set_quantity,
+    "get_cart": ordering_tools.get_cart,
+    "submit_order": ordering_tools.submit_order,
+}
+
+
+def _make_tool_handler(handler):
+    """Wrap one ordering tool as a pipecat function handler.
+
+    Must take exactly one parameter: pipecat treats any handler with more than
+    one as the deprecated 6-positional-arg form and calls it that way, which
+    breaks every tool call at runtime.
+    """
+
+    async def run_tool(params):
+        # Handlers are sync, fast, and never raise: refusals come back as
+        # structured dicts the model can read out loud.
+        await params.result_callback(handler(**params.arguments))
+
+    return run_tool
+
+
+def register_ordering_tools(llm):
+    """Route the LLM's function calls to the handlers in ordering/tools.py."""
+    for name, handler in ORDERING_FUNCTIONS.items():
+        llm.register_function(name, _make_tool_handler(handler))
+
+
+async def run_bot(transport: BaseTransport, sample_rate: int):
+    logger.info(f"Starting bot at {sample_rate} Hz")
+
+    # One cart per call.
+    ordering_tools.reset()
 
     stt = DeepgramSTTService(api_key=os.getenv("DEEPGRAM_API_KEY"))
 
-    tts = CartesiaTTSService(
-        api_key=os.getenv("CARTESIA_API_KEY"),
-        voice_id="71a7ad14-091c-4e8e-a314-022ece01c121",  # British Reading Lady
+    # The Twilio serializer µ-law encodes every outgoing frame itself, so the
+    # pipeline must carry PCM. sample_rate makes ElevenLabs emit pcm at the
+    # pipeline rate; requesting ulaw_8000 here would double-encode.
+    tts = ElevenLabsTTSService(
+        api_key=os.getenv("ELEVENLABS_API_KEY"),
+        voice_id=os.getenv("ELEVENLABS_VOICE_ID"),
+        model="eleven_flash_v2_5",
+        sample_rate=sample_rate,
     )
 
     llm = OpenAILLMService(api_key=os.getenv("OPENAI_API_KEY"))
+    register_ordering_tools(llm)
 
-    messages = [
-        {
-            "role": "system",
-            "content": "You are a friendly AI assistant. Respond naturally and keep your answers conversational.",
-        },
-    ]
+    messages = [{"role": "system", "content": PROMPT_PATH.read_text().strip()}]
 
-    context = OpenAILLMContext(messages)
+    context = OpenAILLMContext(messages, tools=ordering_tools.TOOL_SCHEMAS)
     context_aggregator = llm.create_context_aggregator(context)
 
     rtvi = RTVIProcessor(config=RTVIConfig(config=[]))
@@ -85,8 +142,8 @@ async def run_bot(transport: BaseTransport):
     task = PipelineTask(
         pipeline,
         params=PipelineParams(
-            audio_in_sample_rate=8000,
-            audio_out_sample_rate=8000,
+            audio_in_sample_rate=sample_rate,
+            audio_out_sample_rate=sample_rate,
             enable_metrics=True,
             enable_usage_metrics=True,
         ),
@@ -97,7 +154,9 @@ async def run_bot(transport: BaseTransport):
     async def on_client_connected(transport, client):
         logger.info(f"Client connected")
         # Kick off the conversation.
-        messages.append({"role": "system", "content": "Say hello and briefly introduce yourself."})
+        messages.append(
+            {"role": "system", "content": "Greet the caller and ask what they would like to order."}
+        )
         await task.queue_frame(LLMRunFrame())
 
     @transport.event_handler("on_client_disconnected")
@@ -112,6 +171,23 @@ async def run_bot(transport: BaseTransport):
 
 async def bot(runner_args: RunnerArguments):
     """Main bot entry point for the bot starter."""
+
+    # Local browser-mic mode: uv run bot.py -t webrtc
+    if isinstance(runner_args, SmallWebRTCRunnerArguments):
+        # Imported here so the telephony path never needs aiortc installed.
+        from pipecat.transports.smallwebrtc.transport import SmallWebRTCTransport
+
+        logger.info("Transport: SmallWebRTC (local)")
+        transport = SmallWebRTCTransport(
+            webrtc_connection=runner_args.webrtc_connection,
+            params=TransportParams(
+                audio_in_enabled=True,
+                audio_out_enabled=True,
+                vad_analyzer=SileroVADAnalyzer(),
+            ),
+        )
+        await run_bot(transport, LOCAL_SAMPLE_RATE)
+        return
 
     transport_type, call_data = await parse_telephony_websocket(runner_args.websocket)
     logger.info(f"Auto-detected transport: {transport_type}")
@@ -134,7 +210,7 @@ async def bot(runner_args: RunnerArguments):
         ),
     )
 
-    await run_bot(transport)
+    await run_bot(transport, TELEPHONY_SAMPLE_RATE)
 
 
 if __name__ == "__main__":

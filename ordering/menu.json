@@ -1,0 +1,2231 @@
+{
+  "menuGroups": [
+    {
+      "name": "கொஞ்சம் Konjam / Small Cravings",
+      "guid": "9a2ece70-cad2-52ed-84fb-9cc0463bdc21",
+      "items": [
+        {
+          "name": "Kuzhi Paniyaram (V)",
+          "guid": "891fab38-56ae-556f-9733-b71895693611",
+          "price": 12.0,
+          "description": "Fried Dumplings, Dangar Chutney, Malli Chutney",
+          "modifierGroups": [],
+          "spoken_name": "koozhi paniyaram"
+        },
+        {
+          "name": "Marina Beach Sundal (V)",
+          "guid": "3e34898c-8a75-5985-a336-bf18e0586f5b",
+          "price": 11.0,
+          "description": "Peas, Onion, Coconut, Tomato, Spices",
+          "modifierGroups": [],
+          "spoken_name": "marina beach sundal"
+        },
+        {
+          "name": "Gobhi 65 (V)",
+          "guid": "1d3a8505-c2bd-5b65-b642-65c091538272",
+          "price": 13.0,
+          "description": "Crispy Fried Cauliflower Marinated with Red Chilli",
+          "modifierGroups": [],
+          "spoken_name": "gobi sixty five"
+        },
+        {
+          "name": "Baby Corn Chili Fry (V)",
+          "guid": "7f397e75-5a76-5cd0-ac8b-60c51efe70c6",
+          "price": 14.0,
+          "description": "Crispy Baby Corn with Spicy Tangy Capsicum, Onion and Stirfried Sauce",
+          "modifierGroups": [],
+          "spoken_name": "baby corn chili fry"
+        },
+        {
+          "name": "Madurai Fried Chicken",
+          "guid": "756e3529-b1ea-5736-b777-29ee78e92277",
+          "price": 16.0,
+          "description": "\"Poricha kozhi\" a street food classic from the night markets of Madurai",
+          "modifierGroups": []
+        },
+        {
+          "name": "Chicken Lollipop",
+          "guid": "0263ca3c-da93-5399-a413-5df5160c2289",
+          "price": 15.0,
+          "description": "Red Chili Marinated Chicken Wings, Chili Garlic Dip",
+          "modifierGroups": []
+        },
+        {
+          "name": "Chicken 65",
+          "guid": "e1ce5e75-a74b-5a34-b93e-c0dcced19e02",
+          "price": 14.0,
+          "description": "Crispy Fried Chicken Nuggets Marinated with Red Chilli",
+          "modifierGroups": [],
+          "spoken_name": "chicken sixty five"
+        },
+        {
+          "name": "Vanjaram Meen Fry",
+          "guid": "64b28170-6070-5b50-98bc-1e2607371d9d",
+          "price": 17.0,
+          "description": "Wild caught king fish, red chili masala",
+          "modifierGroups": [],
+          "spoken_name": "vanjaram meen fry"
+        },
+        {
+          "name": "Nethili Fish Fry",
+          "guid": "d3464b09-885f-57c2-8c88-a9c0cba6271f",
+          "price": 16.0,
+          "description": "Crispy anchovies, curry leaves, lemon aioli",
+          "modifierGroups": [],
+          "spoken_name": "nethili fish fry"
+        },
+        {
+          "name": "Mutton Kola Urundai",
+          "guid": "2c878e3b-cf25-5d60-b75a-3e0e12083b62",
+          "price": 16.0,
+          "description": "Crispy meatballs, green mango Moringa chutney",
+          "modifierGroups": [],
+          "spoken_name": "mutton kola urundai"
+        },
+        {
+          "name": "Prawn 65",
+          "guid": "d9149f01-6bd8-5c37-b3c4-4712945250d8",
+          "price": 18.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "prawn sixty five"
+        },
+        {
+          "name": "Mushroom 65 (V)",
+          "guid": "e293e906-fb60-5ba2-9545-759162a18dfe",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "mushroom sixty five"
+        },
+        {
+          "name": "Whole Pomfret Fry",
+          "guid": "41641922-230c-5417-9855-e1ee7b2d9ca8",
+          "price": 18.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Paneer 65 (V)",
+          "guid": "39e4de25-4bdb-52c4-85af-dfbf71682119",
+          "price": 14.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "paneer sixty five"
+        }
+      ]
+    },
+    {
+      "name": "சூப் Suup / Soups",
+      "guid": "2edaeeee-4769-540a-92b6-b9e7efe4e86e",
+      "items": [
+        {
+          "name": "Hot & Sour Soup",
+          "guid": "f42eae5a-c842-5f74-b1b5-8654e2b3ae95",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Naattu Kozhi Rasam",
+          "guid": "5c60c48f-24c6-50b2-b4bb-f3cf8f136630",
+          "price": 7.0,
+          "description": "Spicy country chicken bone broth, coriander",
+          "modifierGroups": [],
+          "spoken_name": "nattu kozhi rasam"
+        },
+        {
+          "name": "Aatu Elumbu Soup",
+          "guid": "65290907-2971-5e3a-b56c-beeac651b6b3",
+          "price": 7.0,
+          "description": "Mutton soup, warm spices, lite coconut cream",
+          "modifierGroups": [],
+          "spoken_name": "aatu elumbu soup"
+        },
+        {
+          "name": "Kaikari Soup (V)",
+          "guid": "09b5cbb2-2d97-5c03-8c17-0a29dc2fc088",
+          "price": 6.0,
+          "description": "Mixed Vegetables Broth, Lentils, Curry Leaves",
+          "modifierGroups": [],
+          "spoken_name": "kaikari soup"
+        },
+        {
+          "name": "Sweetcorn Soup",
+          "guid": "46553a2f-e9e2-5dc1-9aa7-544a504d550f",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        }
+      ]
+    },
+    {
+      "name": "அசத்தல் Asathal / Signature Dishes",
+      "guid": "57e4b70a-2723-579a-8009-c6d0e4d35a51",
+      "items": [
+        {
+          "name": "Crispy Crab Kothu Parotta",
+          "guid": "9da84ddc-6fef-525e-93fb-d0fa7073c204",
+          "price": 18.0,
+          "description": "Soft shell crab masala, egg, onion raita",
+          "modifierGroups": []
+        },
+        {
+          "name": "Paal Parotta",
+          "guid": "c92a7aff-1583-5dd7-baab-c4593c218873",
+          "price": 17.0,
+          "description": "Parotta Drizzled With Coconut Milk Served in Banana Leaf",
+          "modifierGroups": []
+        },
+        {
+          "name": "Pomfret Polichathu",
+          "guid": "a7b1a148-5c41-5d8a-91aa-7b6634523f10",
+          "price": 18.0,
+          "description": "Pan Fried Fish wrapped in Banana Leaf with Coconut Milk Masala",
+          "modifierGroups": [],
+          "spoken_name": "pomfret polichathu"
+        },
+        {
+          "name": "Seafood 65",
+          "guid": "96750396-878a-5fc7-8604-10f7f571f592",
+          "price": 19.0,
+          "description": "Crab, Fish, Calamari, Shrimp",
+          "modifierGroups": [],
+          "spoken_name": "seafood sixty five"
+        }
+      ]
+    },
+    {
+      "name": "முக்கிய உணவு Mukkiya Unavu / Main Course",
+      "guid": "030c6073-840f-5bc4-8260-a6394f99796b",
+      "items": [
+        {
+          "name": "Ennai Kathirikai (V)",
+          "guid": "7c15633f-45b7-561f-bb46-a9eefcc34cd8",
+          "price": 13.0,
+          "description": "Stuffed eggplant curry, coconut, red chili tamarind",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "0fce6112-8d67-5f9f-8947-d3b28f21f445",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "7fafe9c9-9249-5346-9f93-2f476e0177c3",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "315a8c44-7ed3-540b-a76d-8fc8601ceb5e",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "793b00b8-4351-5240-99ec-a5f8c4afa175",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "ennai kathirikai"
+        },
+        {
+          "name": "Drumstick Paya (V)",
+          "guid": "2a998101-dd13-55c2-a929-e14aaed370cb",
+          "price": 14.0,
+          "description": "Drumstick Cooked with Coconut",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "a4feff4a-428f-5b78-bcd1-85144d19a2e7",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "bd7b4148-814f-56ab-9f34-bbd38b198706",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "c2d2480c-9651-58d3-a78d-aeae0a58a8da",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "d8c5b71d-dac1-5c3c-b741-88436215d9e3",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "drumstick paya"
+        },
+        {
+          "name": "Seasonal Veg Kuruma (V)",
+          "guid": "6db40b82-1e40-5e7d-9e0f-11bf7cd544b8",
+          "price": 13.0,
+          "description": "Mixed Vegetables, Marble Potatoes, Cashew Coconut Gravy",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "873b7e33-6cef-56ce-9fa8-4545b0bdb02d",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "0c1bfb00-af60-5e01-b4f3-6d3e51d47168",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "33517521-10e6-593e-ad9c-9f84f09fb4dc",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "25123a6c-d1cb-5748-9ff8-ba21d6824ecb",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "seasonal veg kuruma"
+        },
+        {
+          "name": "Paneer Therakkal (V)",
+          "guid": "7aff6321-958a-5f81-bdcd-aaf7a6153bd0",
+          "price": 14.0,
+          "description": "Flavorful coconut poppy seed curry, fennel seeds",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "cb85a4c9-3d5c-59ec-b75e-eca483ace9d0",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "89598afc-eaf6-5137-9511-c42a033047ea",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "69997aac-d916-5825-a373-4cec927392ca",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "85b0fa9a-8140-52a4-b5bf-03ce7417bd01",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "paneer therakkal"
+        },
+        {
+          "name": "Poondu Kulumbu (V)",
+          "guid": "9fce1893-a635-5c1a-ac40-21e76cd0be93",
+          "price": 14.0,
+          "description": "Hot and sour shallot curry, roasted garlic and red chili",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "08f4b5d5-857a-5f67-813c-7209716e997a",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "c45d70d1-2640-580e-9d7d-e13e4898ce47",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "f2d6889b-535b-5eb9-bf61-7dd66fbec82a",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "25ffa77f-29cf-501b-b8f4-8bb9d60c0f62",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "poondu kuzhambu"
+        },
+        {
+          "name": "Anjappar Chicken Masala",
+          "guid": "f17691e2-347a-5198-9a57-c5e716ae6152",
+          "price": 15.0,
+          "description": "Our signature dish, chef's special sauce",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "becb1427-4821-50ef-ae6e-c883a6d3c458",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "427ada32-27a0-5e20-9d60-0041acad8eef",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "26b487d9-efc0-5a2d-bff6-40bfbf8bf516",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "01d72d06-e565-5e19-84b4-8329c264662c",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pepper Chicken Curry",
+          "guid": "8abe7693-1f13-5511-bd40-75af25b1e64d",
+          "price": 15.0,
+          "description": "Slow cooked chicken, black pepper coconut sauce",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "3335d21b-8a63-5936-a0c6-6f4aa9f82d3e",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "4593623f-bb0e-5c3f-b916-c4e52a6ffc0b",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "11f2aaae-2bc0-5663-a3e2-dc8be805a619",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "22384543-b5f0-59ee-bf8c-0c10577dee3b",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Nattukozhi Ghee Roast",
+          "guid": "fbf7ac96-2372-542c-85e2-b308fa2b4d80",
+          "price": 16.0,
+          "description": "Clarified butter roasted country chicken, dry chettinad masala",
+          "modifierGroups": [],
+          "spoken_name": "nattu kozhi ghee roast"
+        },
+        {
+          "name": "Chettinad Chicken Masala",
+          "guid": "918a9eea-c056-5e8d-80b7-e123c3dd6812",
+          "price": 14.0,
+          "description": "Slow cooked chicken, classic signature spice blend",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "82181361-31e0-59c2-a0f8-6c556b1b4d46",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "e3654368-1487-5097-b0de-c5d2a849d2cc",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "112c08fb-1790-51c8-8036-161cbeac1bbd",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "dfee3a4a-9a7b-52f5-b99f-c4cbbe006c32",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "chettinaad chicken masala"
+        },
+        {
+          "name": "Prawn Thokku",
+          "guid": "59667fec-2068-52ac-a1db-4a7800147708",
+          "price": 18.0,
+          "description": "Stir-fried prawns, shallot and curry leaf masala, tomatoes",
+          "modifierGroups": [],
+          "spoken_name": "prawn thokku"
+        },
+        {
+          "name": "Karaikudi Pepper Crab",
+          "guid": "bc29c4dc-05d5-587e-a1fc-60a2dde4ed48",
+          "price": 33.0,
+          "description": "Dungeness crab, roasted shallots, coconut black pepper masala",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "caca36a3-5dd0-561f-baa0-e9194a70582e",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "57a220a3-6689-5f72-a93d-3bec33e61292",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "34616e8d-1ff8-5ccf-9f04-dfb80ae64d5b",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "ef8adf00-6e16-579b-a38a-e88308d80c00",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "karaikudi pepper crab"
+        },
+        {
+          "name": "Mangai Meen Kulambu",
+          "guid": "c11be680-8c79-5093-9399-d608c650e4f1",
+          "price": 16.0,
+          "description": "Fish, green mango, hot and sour curry",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "ae7cc9ce-9b30-5049-91fa-566bae08c873",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "a8ffc2e3-6a93-5efa-b072-a39177ad87c9",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "7c0458bf-0e6c-545c-a3bf-79cf112a2f28",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "06e53ac5-3de7-5d8c-876e-5237ea340afa",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "mangai meen kuzhambu"
+        },
+        {
+          "name": "Aatu Kari Sukka",
+          "guid": "3e951c16-cd10-5c8a-8841-88e1c14f374e",
+          "price": 16.0,
+          "description": "Slow cooked mutton roast, black pepper",
+          "modifierGroups": [],
+          "spoken_name": "aatu kari sukka"
+        },
+        {
+          "name": "Mutton Masala",
+          "guid": "5357daab-9293-5733-a9fe-fd49aa233c27",
+          "price": 16.0,
+          "description": "Slow cooked mutton, classic signature spice blend",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "bfc78524-1c42-5233-b392-7a02a47c1dec",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "46523e74-67c2-561c-aace-7c3e5be7f30b",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "f952f57d-ccb6-5dc9-9a55-4b3dec9082b3",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "84b48318-1b09-5d95-b56c-1966d4d25e5e",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mutton Paaya",
+          "guid": "c7aa87e1-8f7c-5174-9b99-632f10b5cc55",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "159fd714-93f0-5b13-8c3c-cac3181dfc7a",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "a806ee9a-581b-5831-8aa7-12ef640dfb7a",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "8760689d-422d-5a71-8f6d-99f0eda58ec2",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "eac6034c-4c72-5ac7-a9e4-e43b95c5134d",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mutton Liver Roast",
+          "guid": "85352ae6-4970-5b91-8f83-f731587b7a2e",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Mutton Kudal Kootu",
+          "guid": "2b117957-098e-5f5b-9239-b916ea1c804e",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "d51e8d9e-d4b2-544f-aef9-1b83a9513139",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "30a03dd3-ffd5-5f45-8175-ec41d6e7f2c4",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "84e9620d-8e7b-5bf4-994c-3af7c81e4f04",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "605c9d79-5204-5b85-94e6-bc548e099f9e",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "mutton kudal kootu"
+        },
+        {
+          "name": "Butter Chicken",
+          "guid": "7860bf09-d1a0-5a70-a7e5-7ea18597a96c",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "3efe516b-53c7-5415-bf92-3e3a56c4184d",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "49f4c4b0-6bf9-5981-8f92-d0755b5d5875",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "dafcd00e-43f1-5bba-b6e5-a2d1db7f09e5",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "6ed5800b-f872-53db-916a-6cb73c2ae2af",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Chicken Tikka Masala",
+          "guid": "6ed15bf7-64fb-5f79-aa7a-58b7e4bd890c",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "a80a5d7b-3ee0-5a4f-986b-9af273d9490c",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "d721ce3c-eb03-5356-90e4-dce4e71523ac",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "bb35bc33-21bb-5ba0-b1e9-6687b35494aa",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "8b4470fb-8415-50b0-b10c-22c35aba9dee",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Paneer Butter Masala (V)",
+          "guid": "4f5d492e-03ee-5177-9141-3b872e61e5b5",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "1db87f43-627a-56e0-b24d-adb02791ec16",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "162199a6-1aaa-5236-84c8-95785b9d906e",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "090aee36-f097-5e88-b46f-87d892c57f33",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "4e16b884-d848-5ba2-9bea-712abe16ddf0",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "paneer butter masala"
+        },
+        {
+          "name": "Kadai Paneer (V)",
+          "guid": "e0ad7c46-b813-54ad-9f3d-4c748cbb8d4f",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "bf5683b5-458b-5df9-b424-800713f95a3f",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "5c5ea72c-e0fa-57da-80c6-8bf3f1a5bdd8",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "799b5e96-7ad1-5499-a172-b95a81683b9e",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "cb9fdacd-8782-5411-b959-da9bb7f486e5",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "kadai paneer"
+        },
+        {
+          "name": "Kadai Vegetable (V)",
+          "guid": "54d5a271-47ea-51f5-b954-59eba77242ff",
+          "price": 14.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "789f0270-0bf8-5d67-8b5a-18259dab9b9b",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "49f46863-4935-5d5b-a6ea-852f43fdd127",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "def3f463-dd78-57b5-92ee-ed33a8d8a579",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "81aba237-c416-5f0d-af39-031d46e1bcab",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "kadai vegetable"
+        },
+        {
+          "name": "Egg Curry",
+          "guid": "b3a66d0c-618f-5de2-a02c-461b2bb57c53",
+          "price": 13.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "16acda5f-99fd-5c24-8ec1-378ebb7e18b5",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "3ad6bf25-fcba-5c99-b439-a1e1f5340dc3",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "ea5fcf60-0957-5b8d-981d-13ee9010a8fa",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "db0fe716-67c4-5e38-b305-58cb6df3a958",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "பிரியாணி Biryani",
+      "guid": "d68474a8-0830-5d01-b54f-f53a7a1f1291",
+      "items": [
+        {
+          "name": "Chennai Style Mutton Biryani",
+          "guid": "d17b52d1-13f3-518f-99d7-662c292ee911",
+          "price": 18.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Chennai Style Chicken Biryani",
+          "guid": "ecafed0e-4dad-5154-aadd-6c64f193c0b2",
+          "price": 16.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Chennai Style Plain Biryani (Non Veg)",
+          "guid": "a3ac2c20-bad0-5794-8714-288f3062129c",
+          "price": 14.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Chennai Style Chicken 65 Biryani",
+          "guid": "9eb035d3-509f-5d05-b45a-807d58027222",
+          "price": 16.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "chennai style chicken sixty five biryani"
+        },
+        {
+          "name": "Chennai Style Egg Biryani (Non Veg)",
+          "guid": "0d9c27bc-e059-5d6a-8ed7-04629777b1be",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Seeraga Samba Goat Biryani",
+          "guid": "7e03751d-72df-5323-be08-8fdc14024972",
+          "price": 19.0,
+          "description": "Slow cooked bone-in goat, aromatic short grain rice, onion raita",
+          "modifierGroups": [],
+          "spoken_name": "seeraga samba goat biryani"
+        },
+        {
+          "name": "Seerga Samba Nattu Kozhi Biryani",
+          "guid": "29adf456-57e4-5ab0-abec-ee6338ec6b0f",
+          "price": 19.0,
+          "description": "Bone-in country chicken, aromatic seeraga samba rice, onion raita",
+          "modifierGroups": [],
+          "spoken_name": "seeraga samba nattu kozhi biryani"
+        },
+        {
+          "name": "Seerga Samba Chicken Biryani",
+          "guid": "84356575-9dbf-593e-8141-7df6b4ad9692",
+          "price": 19.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Seerga Samba Chicken 65 Biryani",
+          "guid": "8aea838f-1db3-5978-a527-338cb68ccc0a",
+          "price": 19.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "seeraga samba chicken sixty five biryani"
+        },
+        {
+          "name": "Seeraga Samba Plain Biryani (Non Veg)",
+          "guid": "b01cd943-805a-51a9-b973-53274d6246fd",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Seeraga Samba Egg Biryani (Non Veg)",
+          "guid": "1948a0be-e664-59e8-b106-3dfc692b30b8",
+          "price": 16.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Seeraga Samba Veg Biryani (V)",
+          "guid": "9151c4e7-8f81-5007-950d-70bd6e6e073f",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "seeraga samba veg biryani"
+        }
+      ]
+    },
+    {
+      "name": "சாப்பாடு Saappadu / Meal",
+      "guid": "233bd8b3-2fd4-576e-ad32-7fdfe4c48ded",
+      "items": [
+        {
+          "name": "Mutton Meal / Kari Saappadu",
+          "guid": "5f26bee3-7d2d-5de6-bf65-ea399fae8a34",
+          "price": 18.0,
+          "description": "Mutton kola urundai, mutton masala, Rice, Chappathi, Poriyal, Kootu, Keerai, Rasam, Buttermilk, Sweet, Appalam, Pickle",
+          "modifierGroups": [],
+          "spoken_name": "mutton meal, kari saappadu"
+        },
+        {
+          "name": "Chicken Meal / Kozhi Saappadu",
+          "guid": "e04d6e17-406e-5548-b797-3a48cb839881",
+          "price": 17.0,
+          "description": "Chicken'65, chettinad chicken masala, Rice, Chappathi, Poriyal, Kootu, Keerai, Rasam, Buttermilk, Sweet, Appalam, Pickle",
+          "modifierGroups": [],
+          "spoken_name": "chicken meal, kozhi saappadu"
+        },
+        {
+          "name": "Fish Meal / Meen Saappadu",
+          "guid": "e2bc3609-94e5-5705-9dfe-b9d8636ed2e1",
+          "price": 17.0,
+          "description": "Crispy anchovies, meen kulambu, Rice, Chappathi, Poriyal, Kootu, Keerai, Rasam, Buttermilk, Sweet, Appalam, Pickle",
+          "modifierGroups": [],
+          "spoken_name": "fish meal, meen saappadu"
+        },
+        {
+          "name": "Full Saapadu",
+          "guid": "408d8847-f901-5da6-8a64-e0fb48f1098c",
+          "price": 22.0,
+          "description": "Chicken Masala, Mutton Masala, Fish Curry, Egg Fry, Rice, Chappathi, Poriyal, Kootu, Keerai, Rasam, Buttermilk, Sweet, Appalam, Pickle",
+          "modifierGroups": []
+        },
+        {
+          "name": "Veg Meal / Saiva Saappadu (V)",
+          "guid": "57aa9c72-7227-5134-b98c-cbd1ac99eb81",
+          "price": 15.0,
+          "description": "Gobi 65, kuruma, sambar, Kara kulambu, Rice, Chappathi, Poriyal, Kootu, Keerai, Rasam, Buttermilk, Sweet, Appalam, Pickle",
+          "modifierGroups": [],
+          "spoken_name": "veg meal, saiva saappadu"
+        }
+      ]
+    },
+    {
+      "name": "தோசை Thosai / Dosai",
+      "guid": "5ab0ebfd-3df9-5668-86a1-7d669064bbfe",
+      "items": [
+        {
+          "name": "Masala Dosa (V)",
+          "guid": "cfe4fdd7-3714-5bd6-8415-b6f66baa1c20",
+          "price": 12.0,
+          "description": "Crepe stuffed with turmeric mash potatoes",
+          "modifierGroups": [],
+          "spoken_name": "masala dosa"
+        },
+        {
+          "name": "Classic Nei Roast Dosa (V)",
+          "guid": "4404ad09-53b4-5c05-983c-c8bac0b9b8f7",
+          "price": 12.5,
+          "description": "Clarified butter-roasted crepe",
+          "modifierGroups": [
+            {
+              "name": "Add Potato Masala",
+              "guid": "c9795c48-2b4d-541f-b437-99474fcf7e1e",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Potato Masala",
+                  "guid": "5aa9dec3-30ca-5f89-b2ad-162647042a77",
+                  "price": 2.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "classic nei roast dosa"
+        },
+        {
+          "name": "Mysore Masala Dosa (V)",
+          "guid": "49a7fecd-120d-5363-836f-ce932be94668",
+          "price": 13.0,
+          "description": "Red chili chutney laced crepe, turmeric mash potatoes",
+          "modifierGroups": [],
+          "spoken_name": "mysore masala dosa"
+        },
+        {
+          "name": "Poondu Podi Dosa (V)",
+          "guid": "54972bfc-8d42-568e-baa3-e9f0079575e0",
+          "price": 12.0,
+          "description": "Roasted garlic spice dusted crepe",
+          "modifierGroups": [
+            {
+              "name": "Add Potato Masala",
+              "guid": "2ff93f37-ad53-58b0-9819-beb3d090ab9d",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Potato Masala",
+                  "guid": "03add7d0-8f4a-587b-8042-b2ea0e82b582",
+                  "price": 2.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "poondu podi dosa"
+        },
+        {
+          "name": "Rava Dosa (V)",
+          "guid": "a807a501-22a6-509d-b1f3-f499f31f6391",
+          "price": 12.5,
+          "description": "Semolina and rice batter, black pepper",
+          "modifierGroups": [
+            {
+              "name": "Add Potato Masala",
+              "guid": "3d998334-3737-5a85-88c0-8cb0169e68f2",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Potato Masala",
+                  "guid": "ed18d7ad-084b-5b9c-9592-e81160ec313a",
+                  "price": 2.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "rava dosa"
+        },
+        {
+          "name": "Muttai Dosa",
+          "guid": "31b13967-a6cc-58f7-a96d-79c02001c387",
+          "price": 13.0,
+          "description": "Spiced egg laced crepe, curry dip, chutneys",
+          "modifierGroups": []
+        },
+        {
+          "name": "Madurai Mutton Kari Dosai",
+          "guid": "91f00836-ff67-580c-a455-fff4f7e82722",
+          "price": 15.0,
+          "description": "Fermented rice and lentil pancake, pulled lamb, egg, curry dip, chutneys",
+          "modifierGroups": [],
+          "spoken_name": "madurai mutton kari dosai"
+        },
+        {
+          "name": "Rava Masala Dosa (V)",
+          "guid": "9aaab71f-ade4-5ad6-8a98-e8e70f39d70d",
+          "price": 14.5,
+          "description": "Semolina and rice batter, Black Peppers, Turmeric mashed potatoes",
+          "modifierGroups": [],
+          "spoken_name": "rava masala dosa"
+        },
+        {
+          "name": "Uthappam (V)",
+          "guid": "3b5140b9-d544-572c-a09a-982955708917",
+          "price": 12.0,
+          "description": "Roasted garlic spice dusted crepe",
+          "modifierGroups": [
+            {
+              "name": "Add Potato Masala",
+              "guid": "d0de4767-ac36-5379-a495-64c2bc2974c1",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Potato Masala",
+                  "guid": "c80b4aab-8c57-58bc-8900-b1f5e759cdee",
+                  "price": 2.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "uthappam"
+        },
+        {
+          "name": "Kal Dosa (V)",
+          "guid": "373a52ad-ff86-5fd8-af10-fc80aa1df662",
+          "price": 12.0,
+          "description": "Roasted garlic spice dusted crepe",
+          "modifierGroups": [
+            {
+              "name": "Add Potato Masala",
+              "guid": "3f27fcc2-c066-53a9-9939-3e5c0e624249",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Potato Masala",
+                  "guid": "ebf6ce5d-1449-555a-9832-d799c55f08af",
+                  "price": 2.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "kal dosa"
+        }
+      ]
+    },
+    {
+      "name": "நீராவி உணவு Neeraavi Unavu / Steamed Food",
+      "guid": "b1071f6e-f36a-510b-81c6-d88879902d8d",
+      "items": [
+        {
+          "name": "Idiyappam (V)",
+          "guid": "deccfd70-001f-5b7a-95a0-6223287262ab",
+          "price": 12.0,
+          "description": "Steamed rice string hoppers",
+          "modifierGroups": [
+            {
+              "name": "Accompaniment",
+              "guid": "3690d209-2f8c-5ae2-896e-91d3d145c085",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Coconut Milk",
+                  "guid": "5678ee83-1b20-5859-899b-94ba7a9e6977",
+                  "price": 0.0
+                },
+                {
+                  "name": "Vegetable Stew",
+                  "guid": "6c1bcbf2-9960-5d3e-96a0-0b626a9f076c",
+                  "price": 0.0
+                },
+                {
+                  "name": "Salna",
+                  "guid": "41d4a44b-7fa3-586a-a729-90cb58bd89ff",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "idiyappam"
+        },
+        {
+          "name": "Aappam (V)",
+          "guid": "eca5d052-c472-54d3-9aa9-e68d6dabc18f",
+          "price": 12.0,
+          "description": "Lacy rice pancakes",
+          "modifierGroups": [
+            {
+              "name": "Accompaniment",
+              "guid": "7819aede-bc98-5496-a2aa-5ce30e10f749",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Coconut Milk",
+                  "guid": "a541a7f4-0355-518a-a4f2-031872259b1b",
+                  "price": 0.0
+                },
+                {
+                  "name": "Vegetable Stew",
+                  "guid": "9f1c0f9c-d2e4-5078-847d-4438cd00c6af",
+                  "price": 0.0
+                },
+                {
+                  "name": "Salna",
+                  "guid": "a56b72c6-80a9-5c03-a58c-2ecc409650e2",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "aappam"
+        },
+        {
+          "name": "Aappam With Asaiva Curry",
+          "guid": "36c288cc-9154-53b9-822e-105ac86f2c74",
+          "price": 15.0,
+          "description": "Lacy rice pancakes with a choice of chettinad chicken, mutton masala, or fish curry",
+          "modifierGroups": [
+            {
+              "name": "Curry",
+              "guid": "40727a2a-a5e4-5aa5-932f-34527ccf1337",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Chettinad Chicken",
+                  "guid": "fd5e2980-f136-5e87-bb9d-7c0a47c4ab6e",
+                  "price": 0.0
+                },
+                {
+                  "name": "Mutton Masala",
+                  "guid": "0c2a7446-7682-57aa-b68e-ae3df21116e1",
+                  "price": 0.0
+                },
+                {
+                  "name": "Fish Curry",
+                  "guid": "72b9b012-bf94-5f7a-8b6e-bd26fdd7abcd",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Egg Aappam 2Pcs",
+          "guid": "936d4f98-95d4-548d-8e6d-f51895061ed1",
+          "price": 14.0,
+          "description": "Lacy panackes topped with egg, salna on side",
+          "modifierGroups": [],
+          "spoken_name": "egg appam, two pieces"
+        },
+        {
+          "name": "Idli (V)",
+          "guid": "e69211db-6b78-5e47-99f0-1ec6cc6ffb94",
+          "price": 11.0,
+          "description": "Fermented rice and lentil cakes (3 pcs), sambar, chutneys",
+          "modifierGroups": [
+            {
+              "name": "Accompaniment",
+              "guid": "69d3e559-21d0-5071-b9c2-ed24497a0779",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Sambar",
+                  "guid": "670e7a73-3a92-5534-8793-df3fed1677bf",
+                  "price": 0.0
+                },
+                {
+                  "name": "Coconut Chutney",
+                  "guid": "06bc105f-1d56-5b82-a736-c7cea4b61f82",
+                  "price": 0.0
+                },
+                {
+                  "name": "Milagai Podi",
+                  "guid": "2766888c-5a7b-52a4-b414-406f20557902",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "idli"
+        },
+        {
+          "name": "Podi Idli (V)",
+          "guid": "b05188f2-e997-5e77-8c9f-b97030b0148d",
+          "price": 12.0,
+          "description": "Stir fried idli, curry leaves, chilies",
+          "modifierGroups": [],
+          "spoken_name": "podi idli"
+        }
+      ]
+    },
+    {
+      "name": "தென்னிந்திய ரொட்டி Theninthiya Rotti / South Indian Breads",
+      "guid": "b612d0af-1095-5302-bfff-52a9f45c23cb",
+      "items": [
+        {
+          "name": "Chapathi (2Pcs)",
+          "guid": "95089d2d-f358-5d29-8eae-f810815241f1",
+          "price": 13.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "chapathi, two pieces"
+        },
+        {
+          "name": "Parotta (2Pcs)",
+          "guid": "547e8d00-88f7-532d-84cd-fce599be7786",
+          "price": 13.0,
+          "description": "Classic southern Indian flaky layered bread",
+          "modifierGroups": [],
+          "spoken_name": "parotta, two pieces"
+        },
+        {
+          "name": "Ceylon Parotta",
+          "guid": "91053341-92f0-518e-83fc-35adf0da8545",
+          "price": 12.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Filling",
+              "guid": "0491f938-62d8-5362-a267-ebd24bcf26c9",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Plain Egg",
+                  "guid": "16df553e-2db0-54ee-ae83-0cae2291a96c",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "2e91e181-95a7-5486-9145-494639feff1d",
+                  "price": 0.0
+                },
+                {
+                  "name": "Mutton Kheema",
+                  "guid": "7f60bc19-3801-5938-96ec-71b280e988c1",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kizhi Parotta",
+          "guid": "57146059-dd0b-55ae-973c-ff925822ed40",
+          "price": 14.0,
+          "description": "Layered parotta steamed in banana leaf, choice of veg, chicken or mutton",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "26ac6807-a565-5fd4-b1f5-d516ca345cb3",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Vegetable",
+                  "guid": "0c8d86db-27e9-54ef-9fcf-78c35518482f",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "f2c170b4-328f-557e-b330-6d79f10f7709",
+                  "price": 0.0
+                },
+                {
+                  "name": "Mutton",
+                  "guid": "47284d31-7a61-53b3-9d4d-cefa05b40bf9",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "kizhi parotta"
+        },
+        {
+          "name": "Kothu Parotta",
+          "guid": "f112fdd6-3c57-5c60-a9ae-ca9249d9039f",
+          "price": 13.0,
+          "description": "Shredded Parotta with choice of Veg, Egg, Chicken or Mutton",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "5f8603a6-1ca5-5df4-8dca-e13c8eb49b13",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Vegetable",
+                  "guid": "5f4ff5eb-7237-5ab0-b824-0656e4862f44",
+                  "price": 0.0
+                },
+                {
+                  "name": "Egg",
+                  "guid": "c2c2ba3d-c6c1-5059-8106-027a22cbb38d",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "837084c0-39e6-53e6-9135-332a9e22da21",
+                  "price": 0.0
+                },
+                {
+                  "name": "Mutton",
+                  "guid": "50c55210-d8e4-5f17-a538-857feefb4bfe",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Virudhunagar Parotta (2Pcs)",
+          "guid": "b2ef1d5f-23f1-599b-9416-ae09bc5904c0",
+          "price": 16.0,
+          "description": "Oil fried Parotta with the choice of Veg, Chicken or Mutton",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "8898c9ec-7f23-5d42-bd30-6d58d39cadda",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Vegetable",
+                  "guid": "c33f2d8c-3a4d-5a27-aaa2-156e85ec4a0f",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "23192bf2-adf6-516c-8f61-fba2d4dd2d17",
+                  "price": 0.0
+                },
+                {
+                  "name": "Mutton",
+                  "guid": "e3e400e7-dd68-520d-97fc-dc74f8ca789e",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "viroodhunagar parotta, two pieces"
+        }
+      ]
+    },
+    {
+      "name": "இந்தியன் சைனீஸ் Indian Chinese",
+      "guid": "79925951-f64e-58c8-9c55-f13ace33abfd",
+      "items": [
+        {
+          "name": "Chicken Fried Rice",
+          "guid": "7017e768-de97-5264-a5fc-0c6e73c4c997",
+          "price": 17.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "acdd1117-0ef4-5600-969e-b18956348299",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "2207220d-4bda-5174-a0d7-703dc73922c7",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "d40c06bf-9330-5f98-b0ae-af954b94cd7d",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "64ac0b63-2dfa-555c-b164-52d9eaecb30f",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Add Egg",
+              "guid": "551288d3-009f-555a-9aa9-1ffacdec993f",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Egg",
+                  "guid": "93521415-7447-51b5-ad72-fee2baa54a49",
+                  "price": 2.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Egg Fried Rice",
+          "guid": "7df307c7-5843-501f-8a49-1f29e487aef5",
+          "price": 16.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "047579d0-497e-59d3-8909-bde9d4bae23b",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "0b31eb63-e02c-5f92-a36c-432c34395035",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "babffdc5-bb57-5119-8fe0-b01fa23d0a61",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "081a2446-c940-5294-9829-60b324210247",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Veg Fried Rice",
+          "guid": "51bb8aed-cb51-5ee3-a2b4-af27d28df3bd",
+          "price": 15.0,
+          "description": "",
+          "modifierGroups": [
+            {
+              "name": "Spice Level",
+              "guid": "1f4ab042-4efd-55b8-8ece-3d2343978ee3",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "2593377f-9e4f-5aab-b9bb-0d17d65daaae",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "2be32702-cb20-5707-a2b6-0352fd53d54a",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "e97df38d-2fbc-5fb5-974d-dcaa4a03f1e4",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Add Egg",
+              "guid": "3f34bcc6-ab51-5e47-acea-ed4f0ae99693",
+              "isRequired": false,
+              "minSelections": 0,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Egg",
+                  "guid": "d1cacb95-8961-5e54-aa25-0de468451954",
+                  "price": 2.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Noodles",
+          "guid": "b5bd9d01-7d73-5a88-b609-9cbb1191564c",
+          "price": 15.0,
+          "description": "Choice of vegetable, egg, or chicken",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "fa568947-8789-57d2-96cb-635fd0b6fb20",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Vegetable",
+                  "guid": "b5d2870f-b06d-51db-83c9-62239a3fe2f2",
+                  "price": 0.0
+                },
+                {
+                  "name": "Egg",
+                  "guid": "53cad156-d8b3-5ac5-95a4-11150ce1f16c",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "084b25d1-7beb-568a-ac7a-e36850de034c",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Spice Level",
+              "guid": "4a76c491-085f-575f-b9ee-743761d507d6",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "5426b3bc-0891-550e-819f-359de0b4712a",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "788d62cb-e1d1-5e04-958c-32b783085ed1",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "e360c4fa-6a21-5162-b7c0-ef66cf3e4058",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hakka Chili (Dry / Gravy)",
+          "guid": "fc8e9c30-5e44-5a8e-8284-5dd23f227180",
+          "price": 15.0,
+          "description": "Choice of paneer, chicken, or shrimp",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "c0ae0270-0def-57df-a7fa-76be1ff4b8de",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Paneer",
+                  "guid": "27cb197e-e14c-5908-853a-968042cef630",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "310d2794-8a9a-5522-9e96-9e24247d95c2",
+                  "price": 0.0
+                },
+                {
+                  "name": "Shrimp",
+                  "guid": "ee67f69e-e937-5f4a-95d6-0dae06bacacc",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Style",
+              "guid": "144072e3-d909-590d-9eb8-8785725ffd78",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Dry",
+                  "guid": "b3a3c47c-21a9-58b2-a6d4-8292afda906d",
+                  "price": 0.0
+                },
+                {
+                  "name": "Gravy",
+                  "guid": "6d604d5b-b66f-529b-8974-5caefb574d2e",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Spice Level",
+              "guid": "47abe0a0-3c12-57f4-a35b-173c3f7ebd4c",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "ec5fe8e4-2097-5418-97e5-e114bd3c2741",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "132e92a0-e8d6-5557-a68c-b3a35ea62289",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "1415ad12-4ff4-56d2-8bc1-1efc1512fbea",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "hakka chili, dry or gravy"
+        },
+        {
+          "name": "Manchurian",
+          "guid": "a8dc919b-ecb4-5e47-a508-64d68ecc0b29",
+          "price": 14.0,
+          "description": "Choice of gobhi, chicken, or shrimp",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "0c5891ea-7aa0-5e88-8f8d-0ebfa337d19a",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Gobhi",
+                  "guid": "e28172be-a867-51cb-9a5c-5e7850c7e087",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "10c33fdd-28d7-50a8-90f7-8ee30950ab6a",
+                  "price": 0.0
+                },
+                {
+                  "name": "Shrimp",
+                  "guid": "bd55f727-edf4-547c-b6f9-8b059076eb76",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Style",
+              "guid": "dae1de20-19e0-58a4-98b1-e3245b74970d",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Dry",
+                  "guid": "25e3a386-c44a-58d9-aeb8-6d6d4e4bb504",
+                  "price": 0.0
+                },
+                {
+                  "name": "Gravy",
+                  "guid": "476a0cb8-8c4c-511d-9085-a3ad98cdc78f",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Spice Level",
+              "guid": "f8d56f83-4dba-5318-805d-2cc13cf24dc3",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "30b183a6-43a8-5f8d-b583-b5ff44268b28",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "6664ad66-398d-578f-acc3-046640085c76",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "f8db2174-b033-5420-8f80-06938b21ceef",
+                  "price": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Schezwan (Dry / Gravy)",
+          "guid": "4e4b6037-70d6-5348-8190-89e20a3dd235",
+          "price": 15.0,
+          "description": "Choice of paneer, chicken, or shrimp",
+          "modifierGroups": [
+            {
+              "name": "Protein",
+              "guid": "70f57d6e-a3b1-501c-9626-1bd740c8e6cc",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Paneer",
+                  "guid": "94d32d01-8f4d-5257-b34c-159b5908c5bc",
+                  "price": 0.0
+                },
+                {
+                  "name": "Chicken",
+                  "guid": "4f78b730-b808-5194-8b08-5d12495a19e2",
+                  "price": 0.0
+                },
+                {
+                  "name": "Shrimp",
+                  "guid": "9cfe2248-372d-52bd-b1e5-2c939c852a0e",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Style",
+              "guid": "9194b6c1-7497-512f-a19d-798f56f9582f",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Dry",
+                  "guid": "8d0561e0-9862-5a71-a185-ba32afb411a7",
+                  "price": 0.0
+                },
+                {
+                  "name": "Gravy",
+                  "guid": "fd4b02f3-e641-5fa8-bf91-09b1545f6f50",
+                  "price": 0.0
+                }
+              ]
+            },
+            {
+              "name": "Spice Level",
+              "guid": "599d38ad-29b3-52c8-8528-d6ac76844fd3",
+              "isRequired": true,
+              "minSelections": 1,
+              "maxSelections": 1,
+              "options": [
+                {
+                  "name": "Mild",
+                  "guid": "e7a07ff1-8ed7-5f1e-909d-f7ddf3360a67",
+                  "price": 0.0
+                },
+                {
+                  "name": "Medium",
+                  "guid": "7f476d7e-0099-5bcb-b830-3a7c0ffd3907",
+                  "price": 0.0
+                },
+                {
+                  "name": "Spicy",
+                  "guid": "810a58ee-a87e-5d1b-827a-5589e61936e7",
+                  "price": 0.0
+                }
+              ]
+            }
+          ],
+          "spoken_name": "schezwan, dry or gravy"
+        }
+      ]
+    },
+    {
+      "name": "பக்கம் Pakkam / Sides",
+      "guid": "1cdb253d-26ce-58e9-bf74-f1640057036d",
+      "items": [
+        {
+          "name": "White Rice",
+          "guid": "0c8f6fd3-1a0b-5b0d-aa7f-acf6b2e1af97",
+          "price": 4.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Parotta (1 Pc Side)",
+          "guid": "a44ca66b-eda5-5dbd-93d6-dd996a464bb5",
+          "price": 4.0,
+          "description": "1 piece",
+          "modifierGroups": [],
+          "spoken_name": "parotta, single piece side"
+        },
+        {
+          "name": "Chapathi (1 Pc Side)",
+          "guid": "9cab27ce-2a98-57f1-8aea-2a4d663ab216",
+          "price": 3.0,
+          "description": "1 piece",
+          "modifierGroups": [],
+          "spoken_name": "chapathi, single piece side"
+        },
+        {
+          "name": "Idiyappam (2 Pc Side)",
+          "guid": "404161c8-5020-57d3-acd3-b630b67f02ca",
+          "price": 4.0,
+          "description": "2 pieces",
+          "modifierGroups": [],
+          "spoken_name": "idiyappam, two piece side"
+        },
+        {
+          "name": "Idli - Pc",
+          "guid": "0b351d09-6568-5e96-b30a-b3091fa35f3f",
+          "price": 2.5,
+          "description": "1 piece",
+          "modifierGroups": [],
+          "spoken_name": "idli, single piece side"
+        },
+        {
+          "name": "Aappam (1 Pc Side)",
+          "guid": "50529435-0ea8-57a5-94df-f6c2969d7555",
+          "price": 4.0,
+          "description": "1 piece",
+          "modifierGroups": [],
+          "spoken_name": "appam, single piece side"
+        },
+        {
+          "name": "Potato Masala",
+          "guid": "0ff812c7-f67e-5235-a551-84777114d5ed",
+          "price": 3.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Yogurt",
+          "guid": "399df07b-266d-515d-a78a-6adbac301aba",
+          "price": 3.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Pappad",
+          "guid": "5bb2b64a-35c2-5883-9c30-0139eb574afe",
+          "price": 2.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Raita",
+          "guid": "eec47756-2261-54d3-a4a9-9705bf64836f",
+          "price": 3.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Sambar 8oz",
+          "guid": "7812682b-6078-504c-82fb-661bc7b4afa0",
+          "price": 4.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "sambar, eight ounces"
+        },
+        {
+          "name": "Jeera Rice",
+          "guid": "0341ec02-2c5a-58cc-bc7f-44d44c43843b",
+          "price": 11.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Sambar 16oz",
+          "guid": "af7c4f33-bb95-54af-950d-1bc3c8ff9152",
+          "price": 8.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "sambar, sixteen ounces"
+        },
+        {
+          "name": "Rasam 8oz",
+          "guid": "a49ead7d-9cb9-5b18-b43b-1101e2aab91d",
+          "price": 3.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "rasam, eight ounces"
+        },
+        {
+          "name": "Rasam 16",
+          "guid": "44c5c374-0600-5c62-b933-7638d1b73bde",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "rasam, sixteen ounces"
+        },
+        {
+          "name": "Omelette",
+          "guid": "f45cd073-1e75-5908-b7c4-606d24c7ad16",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Coconut Milk",
+          "guid": "3f72d7e3-c139-5952-95f1-6a8ea7f7c1c2",
+          "price": 3.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Curd Rice",
+          "guid": "c939ad3d-7355-5f32-9a12-5c2ed243652b",
+          "price": 11.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Egg",
+          "guid": "ccaa7ab9-8d7e-5520-81b2-719902944205",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        }
+      ]
+    },
+    {
+      "name": "இனிப்பு Inippu / Desserts",
+      "guid": "44b532cd-a632-57d9-8536-2ab9d4b0f0d2",
+      "items": [
+        {
+          "name": "Paal Kozhukattai",
+          "guid": "8ca87006-edfa-51ec-9f17-15729d34a394",
+          "price": 8.0,
+          "description": "Sweet rice dumplings, jaggery, coconut",
+          "modifierGroups": [],
+          "spoken_name": "paal kozhukattai"
+        },
+        {
+          "name": "Warm Badam Halwa",
+          "guid": "4e8f85d3-f5af-5361-8278-4b6469d5cc1e",
+          "price": 8.0,
+          "description": "Saffron, almonds, clarified butter",
+          "modifierGroups": []
+        },
+        {
+          "name": "Faluda",
+          "guid": "ae347b0d-90c1-50bb-a930-eedf381abe89",
+          "price": 8.0,
+          "description": "Basil seeds, rice noodles, ice cream",
+          "modifierGroups": []
+        },
+        {
+          "name": "Elaneer Payasam",
+          "guid": "ee3808eb-d19b-5f32-81d1-3c1ecd05062c",
+          "price": 8.0,
+          "description": "Tender coconut pudding, Ice Cream",
+          "modifierGroups": [],
+          "spoken_name": "elaneer payasam"
+        },
+        {
+          "name": "Kavuni Rice Pudding",
+          "guid": "67ddead8-e2eb-5b7b-b824-7b7635294d89",
+          "price": 8.0,
+          "description": "Traditional black rice pudding, cardamom, vanilla bean ice cream",
+          "modifierGroups": [],
+          "spoken_name": "kavuni rice pudding"
+        },
+        {
+          "name": "Jigarthanda",
+          "guid": "925d1253-075b-5c34-9ee9-c0f568fde58a",
+          "price": 8.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "jigar thanda"
+        },
+        {
+          "name": "Blueberry Faluda",
+          "guid": "d518890d-26a0-5186-97a2-fac426668eb8",
+          "price": 8.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Sweet Beeda / Paan",
+          "guid": "e1eb31ee-43a4-51de-9fae-1a070175bee4",
+          "price": 2.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "sweet beeda, or paan"
+        }
+      ]
+    },
+    {
+      "name": "குளிர்பானம் Kulirpaanam / Cold Drinks",
+      "guid": "ae927fb7-f0fc-5bde-b79a-ef64ad7e243e",
+      "items": [
+        {
+          "name": "Watermelon Juice",
+          "guid": "8217feed-a4fa-5776-886d-2487c4f8a8c8",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Tender Coconut Water",
+          "guid": "71f565ea-e4df-5b29-a97c-1f8db6c74648",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Cucumber Mint Cooler",
+          "guid": "0aa38a40-6052-52d8-8618-7d7feb685eb2",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Mango Kulukki Sarbath",
+          "guid": "cfb15168-02bb-5188-a926-6e56ae359ba3",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "mango kulukki sharbath"
+        },
+        {
+          "name": "Nannari Sharbat",
+          "guid": "4c9e1d9d-c442-5fc3-b4a4-eeb8e9e9bf89",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "nannari sharbath"
+        },
+        {
+          "name": "Pomegranate Lemonade",
+          "guid": "1df1df6b-7d35-51e8-ae37-703bc34045c8",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Neer Mor Soda",
+          "guid": "b7a2ba0d-aebd-5c1c-a64a-ff0331ac0c74",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "neer mor soda"
+        },
+        {
+          "name": "Fresh Lime Soda",
+          "guid": "89290502-757f-53cd-bca1-99b5a97778c2",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Buttermilk",
+          "guid": "456e4433-0807-55d8-99f7-633b9ee6acbd",
+          "price": 6.0,
+          "description": "",
+          "modifierGroups": []
+        },
+        {
+          "name": "Coca-Cola",
+          "guid": "cfcf8564-02ab-54b3-92de-1954664b4304",
+          "price": 3.0,
+          "description": "Coca-Cola Original Taste — the crisp, refreshing taste you know and love",
+          "modifierGroups": []
+        },
+        {
+          "name": "Diet Coke",
+          "guid": "bc86d20a-7155-5886-9c5f-511c3c54d137",
+          "price": 3.0,
+          "description": "Take a Diet Coke break with this refreshing, no-calorie soft drink",
+          "modifierGroups": []
+        },
+        {
+          "name": "Sprite",
+          "guid": "3c1f564d-7736-586f-acdb-30e4b98adfcf",
+          "price": 3.0,
+          "description": "Classic, cool, crisp lemon-lime flavored taste that's caffeine free",
+          "modifierGroups": []
+        },
+        {
+          "name": "Moru Thatha",
+          "guid": "d8bc2463-4f3f-5830-9af6-5fb77afa1cad",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": [],
+          "spoken_name": "moru thatha"
+        },
+        {
+          "name": "Lassi",
+          "guid": "1c2ddd62-95ec-5660-83b4-7d0aed15d2f3",
+          "price": 7.0,
+          "description": "",
+          "modifierGroups": []
+        }
+      ]
+    },
+    {
+      "name": "சூடான பானங்கள் Suudana Panangal / Hot Beverages",
+      "guid": "4ab4d490-ed59-50e0-bc47-a7b09ca518c0",
+      "items": [
+        {
+          "name": "Kumbakonam Degree Kaapi",
+          "guid": "b20fc00f-984d-5b15-b627-534be62bac2e",
+          "price": 4.0,
+          "description": "Traditional filter coffee",
+          "modifierGroups": [],
+          "spoken_name": "kumbakonam degree kaapi"
+        },
+        {
+          "name": "Sukku Malli Kaappi",
+          "guid": "78968be2-cd31-59d9-a40c-33b3739bc856",
+          "price": 3.0,
+          "description": "Palm sugar, dry ginger",
+          "modifierGroups": [],
+          "spoken_name": "sukku malli kaapi"
+        },
+        {
+          "name": "Masala Tea",
+          "guid": "1713f867-fc26-586a-a60f-a03fdf6bf00f",
+          "price": 4.0,
+          "description": "",
+          "modifierGroups": []
+        }
+      ]
+    }
+  ]
+}

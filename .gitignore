@@ -162,3 +162,5 @@ runpod.toml
 
 # Examples
 templates/streams.xml
+# ordering stub orders
+ordering/orders/

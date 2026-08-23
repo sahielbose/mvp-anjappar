@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TwiML template for Twilio Media Streams.
+
+  OPTIONAL for this setup. bot.py uses pipecat's runner, which generates this
+  TwiML for you from the --proxy flag. You only need this file if you'd rather
+  serve static TwiML (e.g. from a TwiML Bin) instead of pointing Twilio at the
+  running server.
+
+  Replace the host below with your ngrok host. Keep the wss:// scheme and the
+  /ws path. Do not include https:// here.
+-->
+<Response>
+  <Connect>
+    <Stream url="wss://YOUR-NGROK-HOST.ngrok.io/ws" />
+  </Connect>
+</Response>

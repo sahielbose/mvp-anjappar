@@ -4,13 +4,14 @@ version = "0.1.0"
 description = "Twilio phone bot example using Pipecat"
 requires-python = ">=3.10"
 dependencies = [
-    "pipecat-ai[artesia,openai,silero,deepgram,websocket,runner]>=0.0.83",
-    "pipecatcloud>=0.2.4"
-
+    "pipecat-ai[elevenlabs,openai,silero,deepgram,websocket,webrtc,runner]>=0.0.83",
+    "pipecatcloud>=0.2.4",
+    "rapidfuzz>=3.14.5",
 ]
 
 [dependency-groups]
 dev = [
+    "pytest>=9.1.1",
     "ruff~=0.12.1",
 ]
 
@@ -18,3 +19,10 @@ dev = [
 line-length = 100
 [tool.ruff.lint]
 select = ["I"]
+
+[tool.uv]
+# pipecat's webrtc extra pins aiortc~=1.11.0, which pins av<15. av 14.4.0
+# publishes no cp312 macOS-arm64 wheel, so it source-builds against system
+# ffmpeg 8 and fails (it requires ffmpeg 7). aiortc 1.15 allows av<18, which
+# has wheels. Local-mode only; the Twilio path does not use aiortc.
+override-dependencies = ["aiortc>=1.15,<2", "av>=16,<17"]
