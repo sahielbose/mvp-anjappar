@@ -36,3 +36,8 @@ def spoken_price(amount: float) -> str:
     if cents:
         part += f" and {number_words(cents)} cents"
     return part
+
+
+def spoken_digits(text: str) -> str:
+    """'4729' -> 'four seven two nine'. Digits read one at a time, not as a number."""
+    return " ".join(ONES[int(ch)] if ch.isdigit() else ch.lower() for ch in text)

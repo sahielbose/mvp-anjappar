@@ -5,6 +5,64 @@ how likely it is to be wrong.
 
 ---
 
+# Round 3 changes
+
+## Concurrency: the cart was global (fixed)
+
+**It was module-level state.** `ordering/tools.py` held one `_session` for the
+whole process, and `bot.py` called `reset()` on every connection. Two callers at
+once would have shared a cart, and worse, the second caller connecting would
+have wiped the first caller's in-progress order mid-call.
+
+Fixed: the tools are now methods on `Session`, and `run_bot` builds one
+`Session` per websocket connection. Handlers are bound to that instance at
+registration time, so nothing resolves globally when a tool fires. The
+module-level `_session` and the thin wrapper functions still exist, but only
+tests and the dry run use them — there is a test asserting `run_bot` does not.
+
+Never had a chance to bite in production, since the Twilio path has not taken a
+real call yet.
+
+## Customer name
+
+`set_customer_name` is tool 8. Trimmed, capped at 40 characters, stored exactly
+as given — no capitalisation fixing, no spelling correction. An agent that
+"corrects" an unusual name is worse than one that repeats it back verbatim and
+lets the caller fix it.
+
+Calling it again overwrites, so a misheard name is one more tool call to fix.
+Changing it **invalidates the readback**, consistent with every other cart
+mutation: the caller confirmed a different order than the one you now hold.
+
+`submit_order` refuses with `MISSING_CUSTOMER_NAME`, ordered after the modifier
+check and before the readback check, so the agent collects the name and then
+confirms everything at once.
+
+## Pickup code
+
+Four digits from the alphabet `23456789`. Excluding 0 and 1 removes the whole
+0/O and 1/I/l family in one move, and digits are easier to say than a mixed
+alphabet. 4096 combinations, which is fine for same-day pickup collisions but
+**not unique** — two orders on one day can share a code. If that matters, the
+counter should disambiguate by name, or the code should get a fifth character.
+
+Derived by `sha256(idempotency_key)`, so it is stable for a given key
+independent of the stored order file. Idempotent replay returns it unchanged
+both ways: the code is deterministic *and* it is saved in the response.
+
+It is deliberately its own field, separate from `orderGuid` and from the
+customer name. Real Toast issues its own order numbers, so `pickupCode` and
+`spokenPickupCode` are the two things to delete when the real client lands.
+
+## Still open
+
+- The subtotal is not a total: no tax, no fees. Nothing quotes a final price to
+  the caller yet.
+- `MAX_NAME_LEN = 40` truncates silently rather than erroring. Fine for a name;
+  worth revisiting if the field is ever reused.
+
+---
+
 # Round 2 changes
 
 ## Spice Level: 68 items → 26

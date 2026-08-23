@@ -63,19 +63,6 @@ PROMPT_PATH = Path(__file__).parent / "prompts" / "system.txt"
 TELEPHONY_SAMPLE_RATE = 8000
 LOCAL_SAMPLE_RATE = 16000
 
-# The seven ordering tools. Handlers live in ordering/tools.py; the cart is
-# server-side state there, never in the model's context.
-ORDERING_FUNCTIONS = {
-    "search_menu": ordering_tools.search_menu,
-    "add_item": ordering_tools.add_item,
-    "set_modifier": ordering_tools.set_modifier,
-    "remove_item": ordering_tools.remove_item,
-    "set_quantity": ordering_tools.set_quantity,
-    "get_cart": ordering_tools.get_cart,
-    "submit_order": ordering_tools.submit_order,
-}
-
-
 def _make_tool_handler(handler):
     """Wrap one ordering tool as a pipecat function handler.
 
@@ -92,17 +79,22 @@ def _make_tool_handler(handler):
     return run_tool
 
 
-def register_ordering_tools(llm):
-    """Route the LLM's function calls to the handlers in ordering/tools.py."""
-    for name, handler in ORDERING_FUNCTIONS.items():
+def register_ordering_tools(llm, session):
+    """Route the LLM's function calls to this caller's ordering session.
+
+    Handlers are bound to `session`, so nothing is looked up globally at call
+    time and concurrent callers cannot reach each other's cart.
+    """
+    for name, handler in session.tool_handlers().items():
         llm.register_function(name, _make_tool_handler(handler))
 
 
 async def run_bot(transport: BaseTransport, sample_rate: int):
     logger.info(f"Starting bot at {sample_rate} Hz")
 
-    # One cart per call.
-    ordering_tools.reset()
+    # One Session per connection. The cart is per-caller mutable state; a
+    # module-level one would be shared by every simultaneous caller.
+    session = ordering_tools.Session()
 
     stt = DeepgramSTTService(api_key=os.getenv("DEEPGRAM_API_KEY"))
 
@@ -117,7 +109,7 @@ async def run_bot(transport: BaseTransport, sample_rate: int):
     )
 
     llm = OpenAILLMService(api_key=os.getenv("OPENAI_API_KEY"))
-    register_ordering_tools(llm)
+    register_ordering_tools(llm, session)
 
     messages = [{"role": "system", "content": PROMPT_PATH.read_text().strip()}]
 

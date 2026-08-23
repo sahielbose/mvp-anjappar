@@ -58,8 +58,14 @@ def digest(name, result):
             out.append(f"   needs {grp['group_name']}: {opts}")
         return out
 
+    if name == "set_customer_name":
+        return [f"name = {result['customer_name']!r}"]
+
     if name == "submit_order":
-        return [f"{result['status']}  order {result['orderGuid']}"]
+        return [
+            f"{result['status']}  order {result['orderGuid']}",
+            f"pickup code {result['pickupCode']}  spoken: \"{result['spokenPickupCode']}\"",
+        ]
 
     # get_cart, set_modifier, remove_item, set_quantity all return a cart.
     out = []
@@ -71,6 +77,8 @@ def digest(name, result):
             + f"  {line['spoken_price']}"
         )
     out.append(f"   subtotal {result['spoken_subtotal']}")
+    if result.get("customer_name"):
+        out.append(f"   name {result['customer_name']}")
     if result["unfilled_required"]:
         still = ", ".join(
             f"{u['group_name']} for {u['item_name']}" for u in result["unfilled_required"]
@@ -144,11 +152,21 @@ def main():
     dessert = found["candidates"][0]
     call(tools.add_item, item_guid=dessert["item_guid"])
 
-    # 6. The agent tries to submit too early.
+    # 6. The agent tries to submit before it has a name.
     caller("That's everything, send it.")
     call(tools.submit_order)
 
-    # 7. Readback, then submit for real.
+    # 7. Name, asked at the end rather than up front, and misheard once.
+    agent("Sure. Can I get a first name for the order?")
+
+    caller("It's Priya.")
+    call(tools.set_customer_name, name="Prea")
+    agent("Got it, Prea.")
+
+    caller("No, Priya. P R I Y A.")
+    call(tools.set_customer_name, name="Priya")
+
+    # 8. Readback, then submit for real.
     cart = call(tools.get_cart)
     # "3 parotta, two pieces" is genuinely ambiguous out loud, so anything with
     # a quantity above one gets "N orders of ...". See NOTES.md.
@@ -158,12 +176,13 @@ def main():
         + (f", {line['modifiers'][0]['option_name'].lower()}" if line["modifiers"] else "")
         for line in cart["lines"]
     )
-    agent(f"Let me read that back: {spoken}. That comes to {cart['spoken_subtotal']}. "
-          "Is that right?")
+    agent(f"Let me read that back: {spoken}. That comes to {cart['spoken_subtotal']}, "
+          f"under the name {cart['customer_name']}. Is that right?")
 
     caller("Yep, that's right.")
-    call(tools.submit_order, readback_confirmed=True)
-    agent("Great, that's in. It'll be about twenty five minutes.")
+    submitted = call(tools.submit_order, readback_confirmed=True)
+    agent(f"Great, that's in. About twenty minutes for pickup. Your pickup code is "
+          f"{submitted['spokenPickupCode']}. Give that at the counter.")
 
     print()
     rule()

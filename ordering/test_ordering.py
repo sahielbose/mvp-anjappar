@@ -4,8 +4,8 @@ from pathlib import Path
 import pytest
 
 from . import build_menu, tools
-from .speech import spoken_price
-from .toast_client import ToastClient
+from .speech import spoken_digits, spoken_price
+from .toast_client import ToastClient, pickup_code_for
 
 
 @pytest.fixture
@@ -40,6 +40,7 @@ def test_simple_one_item_order_end_to_end(session):
     assert cart["subtotal"] == 12.00
     assert cart["unfilled_required"] == []
 
+    tools.set_customer_name("Priya")
     result = tools.submit_order(readback_confirmed=True)
     assert result["ok"] is True
     assert result["status"] == "SUBMITTED"
@@ -60,6 +61,7 @@ def test_required_modifier_filled_correctly(session):
     assert cart["unfilled_required"] == []
     assert cart["lines"][0]["modifiers"][0]["option_name"] == "Chicken"
 
+    tools.set_customer_name("Priya")
     assert tools.submit_order(readback_confirmed=True)["ok"] is True
 
 
@@ -89,6 +91,7 @@ def test_submit_blocked_when_required_modifier_missing(session):
 
 def test_submit_blocked_before_readback(session):
     tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
 
     result = tools.submit_order()
     assert result["ok"] is False
@@ -105,6 +108,7 @@ def test_submit_blocked_on_empty_cart(session):
 
 def test_editing_cart_invalidates_readback(session):
     tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
     session.cart.readback_confirmed = True
 
     tools.add_item(guid_for(session, "Pappad"))
@@ -219,6 +223,7 @@ def test_same_idempotency_key_creates_one_order(session, tmp_path):
 
 def test_double_submit_does_not_duplicate_order(session):
     tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
 
     first = tools.submit_order(readback_confirmed=True)
     second = tools.submit_order(readback_confirmed=True)
@@ -357,6 +362,7 @@ def test_removing_last_line_leaves_submit_blocked_on_empty(session):
 
 def test_edits_via_tools_invalidate_readback(session):
     added = tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
     session.cart.readback_confirmed = True
 
     tools.set_quantity(added["line_id"], 2)
@@ -367,8 +373,8 @@ def test_edits_via_tools_invalidate_readback(session):
 def test_every_tool_has_a_schema():
     named = {s["function"]["name"] for s in tools.TOOL_SCHEMAS}
     assert named == {
-        "search_menu", "add_item", "set_modifier", "remove_item",
-        "set_quantity", "get_cart", "submit_order",
+        "search_menu", "add_item", "set_modifier", "set_customer_name",
+        "remove_item", "set_quantity", "get_cart", "submit_order",
     }
     for schema in tools.TOOL_SCHEMAS:
         fn = schema["function"]
@@ -546,3 +552,116 @@ def test_colliding_side_names_are_distinguishable(session):
         names_by_group.setdefault(item["name"], set()).add(item["groupName"])
     for name, groups in names_by_group.items():
         assert len(groups) == 1, f"{name} appears in {groups}"
+
+
+# -- customer name ----------------------------------------------------------
+
+
+def test_submit_blocked_with_no_customer_name(session):
+    tools.add_item(guid_for(session, "Masala Dosa (V)"))
+
+    result = tools.submit_order(readback_confirmed=True)
+    assert result["ok"] is False
+    assert result["error"] == "MISSING_CUSTOMER_NAME"
+    assert "name" in result["message"].lower()
+
+    tools.set_customer_name("Priya")
+    assert tools.submit_order(readback_confirmed=True)["ok"] is True
+
+
+def test_set_customer_name_twice_later_value_wins(session):
+    assert tools.set_customer_name("Jon")["customer_name"] == "Jon"
+    assert tools.set_customer_name("John")["customer_name"] == "John"
+    assert tools.get_cart()["customer_name"] == "John"
+
+
+def test_customer_name_is_trimmed_and_capped(session):
+    assert tools.set_customer_name("   Priya  ")["customer_name"] == "Priya"
+
+    long_name = "A" * 200
+    assert len(tools.set_customer_name(long_name)["customer_name"]) == 40
+
+
+def test_customer_name_is_stored_raw_not_normalised(session):
+    """No case fixing, no spelling correction: repeat back what was said."""
+    for given in ["priya", "PRIYA", "Sai Kiran", "D'Souza", "Jeyaraman"]:
+        assert tools.set_customer_name(given)["customer_name"] == given
+
+
+def test_empty_customer_name_is_a_structured_error(session):
+    result = tools.set_customer_name("   ")
+    assert result["ok"] is False
+    assert result["error"] == "INVALID_NAME"
+
+
+def test_changing_the_name_invalidates_readback(session):
+    tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Jon")
+    session.cart.readback_confirmed = True
+
+    tools.set_customer_name("John")
+
+    assert tools.submit_order()["error"] == "READBACK_REQUIRED"
+
+
+def test_customer_name_reaches_the_written_order_file(session):
+    tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
+    tools.submit_order(readback_confirmed=True)
+
+    written = json.loads(next(session.client.orders_dir.glob("*.json")).read_text())
+    assert written["customer"]["name"] == "Priya"
+    assert written["cart"]["customer_name"] == "Priya"
+
+
+# -- pickup code ------------------------------------------------------------
+
+
+def test_same_idempotency_key_returns_the_same_pickup_code(session):
+    cart = {"lines": [], "subtotal": 0}
+    first = session.client.create_order(cart, {}, "key-abc")
+    second = session.client.create_order(cart, {}, "key-abc")
+
+    assert first["pickupCode"] == second["pickupCode"]
+    assert len(list(session.client.orders_dir.glob("*.json"))) == 1
+
+
+def test_pickup_code_is_deterministic_without_writing_an_order():
+    assert pickup_code_for("key-abc") == pickup_code_for("key-abc")
+    assert pickup_code_for("key-abc") != pickup_code_for("key-xyz")
+
+
+def test_pickup_code_has_no_ambiguous_characters():
+    """0/O and 1/I/l are the ones callers mishear. None may appear."""
+    codes = [pickup_code_for(f"key-{i}") for i in range(300)]
+    for code in codes:
+        assert len(code) == 4
+        assert not (set(code) & set("0O1Il")), code
+        assert all(ch in "23456789" for ch in code), code
+
+
+def test_pickup_code_is_separate_from_guid_and_name(session):
+    tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
+    result = tools.submit_order(readback_confirmed=True)
+
+    assert result["pickupCode"] != result["orderGuid"]
+    assert result["pickupCode"] not in result["orderGuid"]
+    assert "customer_name" not in result
+
+
+def test_spoken_pickup_code_has_no_digits(session):
+    tools.add_item(guid_for(session, "Masala Dosa (V)"))
+    tools.set_customer_name("Priya")
+    result = tools.submit_order(readback_confirmed=True)
+
+    spoken = result["spokenPickupCode"]
+    assert not any(ch.isdigit() for ch in spoken), spoken
+    assert len(spoken.split()) == 4
+
+
+def test_spoken_pickup_code_matches_the_code():
+    words = {"2": "two", "3": "three", "4": "four", "5": "five",
+             "6": "six", "7": "seven", "8": "eight", "9": "nine"}
+    code = pickup_code_for("key-abc")
+    assert spoken_digits(code) == " ".join(words[c] for c in code)

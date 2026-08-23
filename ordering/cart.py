@@ -2,6 +2,9 @@
 
 from .speech import number_words, spoken_price
 
+# Long enough for any real first name, short enough to bound a bad transcript.
+MAX_NAME_LEN = 40
+
 
 class CartError(Exception):
     pass
@@ -23,6 +26,7 @@ class Cart:
         self.lines = {}  # line_id -> {"item_guid", "qty", "selections"}
         self._seq = 0
         self.readback_confirmed = False
+        self.customer_name = None
 
     # -- mutation -----------------------------------------------------------
 
@@ -40,6 +44,18 @@ class Cart:
         self.lines[line_id] = {"item_guid": item_guid, "qty": qty, "selections": {}}
         self._touch()
         return line_id
+
+    def set_customer_name(self, name: str):
+        """Store the caller's first name exactly as given, just trimmed and capped.
+
+        Deliberately no spelling correction or capitalisation: an unusual name
+        the agent "fixes" is worse than one it repeats back verbatim.
+        """
+        name = (name or "").strip()
+        if not name:
+            raise CartError("name cannot be empty")
+        self.customer_name = name[:MAX_NAME_LEN]
+        self._touch()
 
     def remove(self, line_id: str):
         if line_id not in self.lines:
@@ -152,6 +168,7 @@ class Cart:
             )
         subtotal = self.subtotal()
         return {
+            "customer_name": self.customer_name,
             "lines": lines,
             "subtotal": subtotal,
             "spoken_subtotal": spoken_price(subtotal),
