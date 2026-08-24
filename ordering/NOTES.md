@@ -5,6 +5,132 @@ how likely it is to be wrong.
 
 ---
 
+# Round 3 changes — demo hardening
+
+Aim: the manager can say anything off his own menu down a real phone line, and
+the only thing that doesn't work is writing the order into Toast.
+
+## The keyterms were never reaching Deepgram
+
+`keyterms.py` built the list. Nothing imported it. `bot.py` constructed
+`DeepgramSTTService(api_key=...)` with no `live_options`, so the menu boosting —
+the entire reason this beats a generic voice vendor — was dead code that looked
+wired. Now built in `bot.py:build_stt()` via
+`LiveOptions(model="nova-3-general", keyterm=[...])`.
+
+Two things that matter if you touch this:
+
+- **nova-3 is required.** Keyterm prompting doesn't exist on nova-2; the
+  parameter is accepted and silently ignored. It happens to be pipecat's default.
+- **Deepgram caps keyterms at 500 tokens across the whole request** and returns
+  an error above it, which drops the connection *mid-call* rather than degrading
+  the transcript. `TOP_N = 100` measured at ~472 estimated tokens — inside the
+  cap but with no margin, and the estimate is rough. `keyterms.budgeted()` now
+  enforces a 380-token budget, which lands at **65 terms**, keeping the whole
+  Tamil head of the list and dropping tail entries like `Kadai Paneer`.
+
+The NOTES round-1 worry ("100 phrases may exceed what's useful or allowed") was
+correct, and the limit is documented at developers.deepgram.com/docs/keyterm.
+
+## Semantic aliases, because fuzzy matching only fixes spelling
+
+`VARIANTS` folds misspellings of one word onto a canonical form. It cannot bridge
+two *different* words. A full-menu audit found exact-name recall was already
+perfect (136/136 findable, the four side-vs-full pairs correctly ambiguous), but
+realistic caller phrasings scored 95/106. Every miss was semantic:
+
+  "goat curry" · "lamb curry" · "eggplant curry" · "cauliflower" · "garlic curry"
+  · "anchovies" · "king fish" · "egg dosa" · "filter coffee" · "chai" · "coke"
+
+`ALIASES` fixes these, and it is applied as **query expansion, never rewriting**.
+Both sides of most pairs are real items here — `Seeraga Samba Goat Biryani` and
+`Mutton Masala` both exist — so folding goat→mutton would make the goat biryani
+unfindable. Scoring takes the best score any variant achieves, so an alias can
+only raise an item's rank, never displace a literal match. Now 106/106.
+
+`goat`/`lamb` → `mutton` is the important one: in Indian English mutton *is*
+goat, and "do you have goat curry?" is a completely ordinary thing to ask here.
+
+## Off-menu requests no longer get a near-miss
+
+Before: **"beef curry" answered with Pepper Chicken Curry** (85.5), "naan" with
+Naattu Kozhi Rasam (77.1), "samosa" with Sambar. To a caller that sounds like the
+restaurant silently substituting on them, and offering chicken for beef at an
+Indian restaurant is not a ranking nicety.
+
+A score threshold alone can't fix it — "lamb curry" and "beef curry" both score
+**exactly 85.5** against Pepper Chicken Curry, because "curry" carries the match.
+The discriminator is different: `lamb` is explained by an alias, `beef` is
+explained by nothing. So a query word that is in neither the menu vocabulary nor
+`ALIASES`, with no candidate above `_CONFIDENT_SCORE` (90), returns **no
+candidates** plus `unmatched_terms` for the agent to name back.
+
+Misspellings survive because they score high: `chapati` 93.3, `papad` 90.9,
+`seruga samba goat biryani` 104.1, `prawn thoku` 95.7.
+
+Deliberately *not* aliased: naan, samosa, vindaloo, tandoori, saag, dal, pakora.
+Adding them would steer callers to a near-miss instead of an honest "we don't
+make that".
+
+## A vegetarian request never gets meat
+
+`paneer tikka` returned **Chicken Tikka Masala** first, and `vegetarian biryani`
+returned **Chennai Style Plain Biryani (Non Veg)** first. Both are the kind of
+thing that ends a demo.
+
+The second one is a subtle bug: `_normalize` strips parentheticals, so the
+`(V)` / `(Non Veg)` markers — the only thing distinguishing those two nearly
+identical biryani names — were gone before matching. `_is_non_veg()` reads the
+**raw** name instead. A veg-signal word in the query applies
+`_VEG_CONFLICT_PENALTY` to meat items. Non-veg queries are untouched.
+
+## 86'd items, finally handled
+
+Round 1 flagged this as unresolved: "the agent will currently take an order for a
+biryani the kitchen cannot make."
+
+`availability.py` + `ordering/eightysixed.json` hold the out-of-stock list.
+Candidates carry `available`, and `add_item` **refuses** an 86'd guid — belt and
+braces, because the agent can call `add_item` from an earlier search result.
+Staff toggle it with the same fuzzy search the agent uses:
+
+```bash
+uv run python -m ordering.scripts.eightysix out goat biryani
+uv run python -m ordering.scripts.eightysix back goat biryani
+uv run python -m ordering.scripts.eightysix          # show the list
+```
+
+**The 16 items that showed OUT OF STOCK on 2026-08-22 are deliberately not baked
+in.** Stock moves daily, and an agent refusing to sell something the kitchen
+actually has is the same failure in the other direction. Everything defaults to
+available; the file ships empty.
+
+This is a placeholder for Toast's stock API (`stock:read` / `stock:write`), which
+is on the **read-only** tier we can buy self-serve — so this is the one gap that
+closes without waiting for order-write access. Swapping the source is a change to
+`availability.load()` and nothing else.
+
+## Tests
+
+`ordering/test_menu_coverage.py`, 174 cases: every one of the 136 items findable
+by name, the caller-phrasing set, the off-menu blocklist, veg/non-veg, and the
+86 path. Plus 6 in `test_bot_wiring.py` asserting the keyterms actually reach
+Deepgram, that the model is nova-3, and that the budget holds — the keyterm gap
+shipped silently once and should fail loudly if it comes back.
+
+Suite is **252 passing**.
+
+## Still open
+
+- **Toast order-write.** `toast_client.py` is still the local-JSON stub. See
+  `~/Downloads/toast-integration-research.md`; the short version is that the
+  custom-integration request has to come from Anjappar's own Toast rep.
+- Modifier groups are still inferred (round 1 note below stands).
+- `search_menu` thresholds are still tuned against invented queries, not real
+  call transcripts.
+
+---
+
 # Round 2 changes
 
 ## Spice Level: 68 items → 26
