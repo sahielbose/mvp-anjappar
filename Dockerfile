@@ -12,5 +12,12 @@ RUN --mount=type=cache,target=/root/.cache/uv \
     --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
     uv sync --locked --no-install-project --no-dev
 
-# Copy the application code
+# Copy the application code.
+#
+# bot.py alone is not enough: it imports the `ordering` package and reads
+# prompts/system.txt at startup, so a container built without these starts and
+# then dies on the first import. The menu and the 86'd list travel with the
+# image, which also means redeploying is how a menu correction ships.
 COPY ./bot.py bot.py
+COPY ./ordering ./ordering
+COPY ./prompts ./prompts
