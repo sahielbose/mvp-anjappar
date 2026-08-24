@@ -160,3 +160,57 @@ def test_telephony_path_does_not_require_aiortc():
     top = src.split("async def bot(")[0]
     assert "smallwebrtc" not in top, "webrtc import leaked to module scope"
     assert "smallwebrtc" in src.split("async def bot(")[1]
+
+
+# -- ASR keyterm biasing ----------------------------------------------------
+#
+# The menu-term boosting is the product differentiator, and it was present in
+# ordering/keyterms.py but never passed to Deepgram — dead code that looked
+# wired. These assert the connection itself, not just that the module exists.
+
+
+def test_stt_actually_sends_menu_keyterms_to_deepgram():
+    stt = bot.build_stt()
+    sent = stt._settings.get("keyterm")
+
+    assert sent, "STT built with no keyterms: the menu boosting is not reaching Deepgram"
+    assert "Mangai Meen Kulambu" in sent
+    assert "Naattu Kozhi Rasam" in sent
+
+
+def test_stt_uses_nova_3():
+    """keyterm prompting exists only on nova-3; on any other model Deepgram
+    ignores the parameter and the boosting silently does nothing."""
+    assert "nova-3" in bot.build_stt()._settings["model"]
+
+
+def test_keyterms_stay_under_deepgrams_token_cap():
+    """Over 500 tokens Deepgram rejects the request outright, which drops the
+    call rather than degrading the transcript."""
+    from ordering import keyterms as kt
+
+    terms = kt.budgeted()
+    cost = sum(kt.estimate_tokens(t) for t in terms)
+
+    assert cost <= kt.TOKEN_BUDGET
+    assert cost < 500
+    assert len(terms) > 40, f"budget starved the list down to {len(terms)} terms"
+
+
+def test_deepgram_sdk_repeats_keyterm_params_instead_of_comma_joining():
+    """Comma-joined keyterms are accepted by the API and boost nothing, so this
+    pins the serialization the whole feature depends on."""
+    from deepgram.clients.common.v1.helpers import append_query_params
+
+    url = append_query_params(
+        "wss://x", {"keyterm": ["Seeraga Samba", "Kozhi"], "model": "nova-3-general"}
+    )
+    assert "keyterm=Seeraga+Samba" in url
+    assert "keyterm=Kozhi" in url
+    assert "Seeraga+Samba,Kozhi" not in url
+
+
+def test_stt_construction_does_not_need_a_real_api_key():
+    """build_stt() runs at call setup; it must not touch the network."""
+    stt = bot.build_stt()
+    assert stt._settings["encoding"] == "linear16"  # pipecat defaults survive the merge

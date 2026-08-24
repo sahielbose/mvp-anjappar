@@ -13,6 +13,13 @@ MENU_PATH = Path(__file__).parent / "menu.json"
 
 TOP_N = 100
 
+# Deepgram rejects the whole request once the keyterms exceed 500 tokens:
+# "Keyterm limit exceeded. The maximum number of tokens across all keyterms
+# is 500." That is a connection error mid-call, not a degraded transcript, so
+# the budget is enforced here rather than discovered on a live line.
+# https://developers.deepgram.com/docs/keyterm
+TOKEN_BUDGET = 380
+
 # Words nova-3 already handles. Not worth a keyterm slot.
 COMMON = {
     "chicken", "rice", "fried", "hot", "sour", "soup", "egg", "eggs", "mixed",
@@ -92,6 +99,35 @@ def extract_terms(menu: dict) -> list:
 def build_query(terms: list) -> str:
     """Repeated keyterm= params, spaces as '+'. Never comma-joined."""
     return "&".join("keyterm=" + "+".join(t.split()) for t in terms)
+
+
+def estimate_tokens(phrase: str) -> int:
+    """Deliberately pessimistic token count for one keyterm.
+
+    Deepgram doesn't publish its tokenizer, and these are exactly the strings a
+    BPE vocabulary handles worst — "Kozhukattai" and "Saappadu" fragment far
+    more than an English word of the same length. Assuming ~1 token per 3
+    characters overestimates for English and lands closer to the truth for the
+    transliterations, which is the direction we want to be wrong in.
+    """
+    dense = len(phrase.replace(" ", ""))
+    return max(len(phrase.split()), -(-dense // 3))
+
+
+def budgeted(path=MENU_PATH, budget=TOKEN_BUDGET, top_n=TOP_N) -> list:
+    """Highest-ranked keyterms that fit inside the token budget.
+
+    Skips rather than stops on an over-budget term: the list is ranked, but a
+    long phrase near the cap shouldn't shut out the shorter terms behind it.
+    """
+    chosen, spent = [], 0
+    for term in extract_terms(load_menu(path))[:top_n]:
+        cost = estimate_tokens(term)
+        if spent + cost > budget:
+            continue
+        chosen.append(term)
+        spent += cost
+    return chosen
 
 
 def load_menu(path=MENU_PATH) -> dict:

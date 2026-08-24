@@ -32,6 +32,7 @@ transport and sample rate; see SAMPLE_RATES below.
 import os
 from pathlib import Path
 
+from deepgram import LiveOptions
 from dotenv import load_dotenv
 from loguru import logger
 from pipecat.audio.vad.silero import SileroVADAnalyzer
@@ -52,6 +53,7 @@ from pipecat.transports.websocket.fastapi import FastAPIWebsocketParams, FastAPI
 
 load_dotenv(override=True)
 
+from ordering import keyterms as menu_keyterms  # noqa: E402  (needs load_dotenv first)
 from ordering import tools as ordering_tools  # noqa: E402  (needs load_dotenv first)
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "system.txt"
@@ -98,13 +100,32 @@ def register_ordering_tools(llm):
         llm.register_function(name, _make_tool_handler(handler))
 
 
+def build_stt():
+    """Deepgram, biased toward this restaurant's menu.
+
+    This is the whole reason the bot can hear "Seeraga Samba goat biryani" over
+    a phone line. Without the keyterms it is a general English model being asked
+    to guess at Tamil transliterations, which is the failure the previous vendor
+    shipped. nova-3 is required: keyterm prompting exists only on nova-3 and
+    Flux, and it happens to be pipecat's default model already.
+    """
+    terms = menu_keyterms.budgeted()
+    cost = sum(menu_keyterms.estimate_tokens(t) for t in terms)
+    logger.info(f"Deepgram keyterms: {len(terms)} terms, ~{cost} tokens (cap 500)")
+
+    return DeepgramSTTService(
+        api_key=os.getenv("DEEPGRAM_API_KEY"),
+        live_options=LiveOptions(model="nova-3-general", keyterm=terms),
+    )
+
+
 async def run_bot(transport: BaseTransport, sample_rate: int):
     logger.info(f"Starting bot at {sample_rate} Hz")
 
     # One cart per call.
     ordering_tools.reset()
 
-    stt = DeepgramSTTService(api_key=os.getenv("DEEPGRAM_API_KEY"))
+    stt = build_stt()
 
     # The Twilio serializer µ-law encodes every outgoing frame itself, so the
     # pipeline must carry PCM. sample_rate makes ElevenLabs emit pcm at the
