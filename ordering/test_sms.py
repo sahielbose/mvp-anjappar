@@ -106,7 +106,7 @@ def test_message_matches_the_receipt_format():
         "   - Spicy\n"
         "3x Parotta - $11.85\n"
         "\n"
-        "Total: $43.75\n"
+        "Subtotal: $43.75\n"
         "Pickup in ~20 min. Give your order # at the counter."
     )
 
@@ -120,7 +120,7 @@ def test_single_quantity_has_no_multiplier_prefix():
 
 def test_price_shown_is_the_line_total_not_the_unit_price():
     """price on a cart line is already qty x unit. Printing a unit price next to
-    a quantity would read as a much cheaper order than the total below it."""
+    a quantity would read as a much cheaper order than the subtotal below it."""
     cart = {"lines": [{"name": "Idli", "qty": 4, "price": 23.80, "modifiers": []}], "subtotal": 23.80}
     body = sms.build_order_message(cart, "2345")
     assert "4x Idli - $23.80" in body
@@ -149,7 +149,7 @@ def test_every_modifier_appears_under_its_own_item():
     assert "   - Medium\n   - Extra Raita" in body
 
 
-def test_long_order_is_trimmed_but_keeps_the_number_and_total():
+def test_long_order_is_trimmed_but_keeps_the_number_and_subtotal():
     cart = {
         "customer_name": "Priya",
         "lines": [
@@ -162,7 +162,7 @@ def test_long_order_is_trimmed_but_keeps_the_number_and_total():
     body = sms.build_order_message(cart, "4729")
     assert len(body) <= sms.MAX_BODY
     assert "Order #4729" in body
-    assert "Total: $1199.40" in body
+    assert "Subtotal: $1199.40" in body
     assert "more items" in body
 
 
