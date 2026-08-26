@@ -74,7 +74,7 @@ def build_order_message(cart: dict, pickup_code: str) -> str:
         # Subtotal, not total: the cart has no tax or fees in it, so calling
         # this a total would understate what they actually pay at the counter.
         f"Subtotal: ${cart.get('subtotal', 0):.2f}",
-        "Pickup in ~20 min. Give your order # at the counter.",
+        "Pickup in ~20 min. Give your order # at the counter. Reply STOP to opt out.",
     ]
 
     body = "\n".join(head + items + tail)

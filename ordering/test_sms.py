@@ -107,7 +107,7 @@ def test_message_matches_the_receipt_format():
         "3x Parotta - $11.85\n"
         "\n"
         "Subtotal: $43.75\n"
-        "Pickup in ~20 min. Give your order # at the counter."
+        "Pickup in ~20 min. Give your order # at the counter. Reply STOP to opt out."
     )
 
 
