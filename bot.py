@@ -52,6 +52,7 @@ from pipecat.transports.websocket.fastapi import FastAPIWebsocketParams, FastAPI
 
 load_dotenv(override=True)
 
+from ordering import sms as ordering_sms  # noqa: E402  (needs load_dotenv first)
 from ordering import tools as ordering_tools  # noqa: E402  (needs load_dotenv first)
 
 PROMPT_PATH = Path(__file__).parent / "prompts" / "system.txt"
@@ -89,12 +90,15 @@ def register_ordering_tools(llm, session):
         llm.register_function(name, _make_tool_handler(handler))
 
 
-async def run_bot(transport: BaseTransport, sample_rate: int):
+async def run_bot(transport: BaseTransport, sample_rate: int, caller_number=None,
+                  restaurant_number=None):
     logger.info(f"Starting bot at {sample_rate} Hz")
 
     # One Session per connection. The cart is per-caller mutable state; a
     # module-level one would be shared by every simultaneous caller.
-    session = ordering_tools.Session()
+    session = ordering_tools.Session(
+        caller_number=caller_number, restaurant_number=restaurant_number
+    )
 
     stt = DeepgramSTTService(api_key=os.getenv("DEEPGRAM_API_KEY"))
 
@@ -153,7 +157,8 @@ async def run_bot(transport: BaseTransport, sample_rate: int):
 
     @transport.event_handler("on_client_disconnected")
     async def on_client_disconnected(transport, client):
-        logger.info(f"Client disconnected")
+        logger.warning("Client disconnected - call ending. If this was unexpected, "
+                       "the cause is above this line.")
         await task.cancel()
 
     runner = PipelineRunner(handle_sigint=False)
@@ -184,9 +189,16 @@ async def bot(runner_args: RunnerArguments):
     transport_type, call_data = await parse_telephony_websocket(runner_args.websocket)
     logger.info(f"Auto-detected transport: {transport_type}")
 
+    # The media stream carries the CallSid but not the phone numbers, so fetch
+    # the call record to learn who to text the receipt to. Best-effort: on any
+    # failure the numbers stay None and the call proceeds without SMS.
+    call_sid = call_data["call_id"]
+    caller_number, restaurant_number = ordering_sms.lookup_call_parties(call_sid)
+    logger.info(f"Call parties: caller={caller_number} restaurant={restaurant_number}")
+
     serializer = TwilioFrameSerializer(
         stream_sid=call_data["stream_id"],
-        call_sid=call_data["call_id"],
+        call_sid=call_sid,
         account_sid=os.getenv("TWILIO_ACCOUNT_SID", ""),
         auth_token=os.getenv("TWILIO_AUTH_TOKEN", ""),
     )
@@ -202,10 +214,18 @@ async def bot(runner_args: RunnerArguments):
         ),
     )
 
-    await run_bot(transport, TELEPHONY_SAMPLE_RATE)
+    await run_bot(transport, TELEPHONY_SAMPLE_RATE, caller_number=caller_number,
+                  restaurant_number=restaurant_number)
 
 
 if __name__ == "__main__":
     from pipecat.runner.run import main
+
+    # Every run writes a full log to logs/. When a call cuts off, the reason is
+    # in the newest file in there. Terminal output stays the same.
+    log_dir = Path(__file__).parent / "logs"
+    log_dir.mkdir(exist_ok=True)
+    logger.add(log_dir / "call_{time:YYYY-MM-DD_HH-mm-ss}.log", level="DEBUG", backtrace=True,
+               diagnose=True)
 
     main()

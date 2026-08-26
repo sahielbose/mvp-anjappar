@@ -13,6 +13,7 @@ import uuid
 from rapidfuzz import fuzz, process
 
 from .cart import Cart, CartError
+from .sms import send_order_sms
 from .speech import spoken_price
 from .toast_client import ToastClient
 
@@ -118,11 +119,16 @@ class Session:
     mutable per-call state and two callers on one Session would collide.
     """
 
-    def __init__(self, client=None):
+    def __init__(self, client=None, caller_number=None, restaurant_number=None):
         self.client = client or ToastClient()
         self.menu = self.client.get_menu()
         self.cart = Cart(self.menu)
         self.order_key = str(uuid.uuid4())
+        # Phone numbers for the confirmation text. Set by bot.py once the call's
+        # parties are looked up; None in local/webrtc mode, where SMS is skipped.
+        self.caller_number = caller_number
+        self.restaurant_number = restaurant_number
+        self.sms_sent = False
         # Precompute normalized names for fuzzy search. Several items can share
         # one normalized name ("Aappam (V)" and "Aappam (1 Pc Side)").
         self._choices = {}
@@ -271,11 +277,26 @@ class Session:
                 "cart": cart.snapshot(),
             }
 
+        snapshot = cart.snapshot()
         response = self.client.create_order(
-            cart=cart.snapshot(),
+            cart=snapshot,
             customer={"name": cart.customer_name},
             idempotency_key=self.order_key,
         )
+
+        # Text the caller their receipt, at most once. create_order is
+        # idempotent, so a repeat submit costs the kitchen nothing, but without
+        # this flag it would send the caller a second identical receipt.
+        # Fire-and-forget: a texting failure must not fail an order the kitchen
+        # already has, and the caller hears the pickup code either way.
+        if not self.sms_sent:
+            self.sms_sent = send_order_sms(
+                to_number=self.caller_number,
+                from_number=self.restaurant_number,
+                cart=snapshot,
+                pickup_code=response.get("pickupCode", ""),
+            )
+
         return {"ok": True, **response}
 
 

@@ -164,3 +164,6 @@ runpod.toml
 templates/streams.xml
 # ordering stub orders
 ordering/orders/
+
+# bot run logs
+logs/

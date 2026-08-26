@@ -119,7 +119,7 @@ def test_handlers_ignore_the_module_level_session():
 def test_bot_builds_a_session_per_connection():
     """run_bot must construct its own Session, not reach for module state."""
     src = inspect.getsource(bot.run_bot)
-    assert "ordering_tools.Session()" in src
+    assert "ordering_tools.Session(" in src
     assert "ordering_tools.reset()" not in src
 
 
